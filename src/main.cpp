@@ -1,5 +1,12 @@
 #include <iostream>
 
-int main(int argc, char *argv[])
+#include "Level.h"
+
+int main()
 {
+    Level sandbox("Levels/sandbox.txt");
+    sandbox.PrintLevel();
+
+    system("PAUSE");
+    return 0;
 }
