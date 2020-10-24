@@ -6,6 +6,7 @@
 Level::Level(string levelName)
 {
     levelName_ = levelName;
+    LoadLevel();
 }
 
 void Level::LoadLevel()
@@ -34,7 +35,6 @@ void Level::LoadLevel()
             break;
         }
     }
-
 }
 
 void Level::PrintLevel()

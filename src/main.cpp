@@ -1,8 +1,11 @@
 #include <iostream>
 
-int main(int argc, char *argv[])
+#include "Level.h"
+
+int main()
 {
-    std::cout << "Wow, I'm on a branch!\n";
+    Level sandbox("Levels/sandbox.txt");
+    sandbox.PrintLevel();
 
     system("PAUSE");
     return 0;
