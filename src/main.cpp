@@ -5,6 +5,7 @@
 int main()
 {
     Level sandbox("Levels/sandbox.txt");
+    sandbox.LoadLevel();
     sandbox.PrintLevel();
 
     system("PAUSE");

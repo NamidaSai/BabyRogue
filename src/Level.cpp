@@ -6,7 +6,6 @@
 Level::Level(string levelName)
 {
     levelName_ = levelName;
-    LoadLevel();
 }
 
 void Level::LoadLevel()
@@ -25,9 +24,16 @@ void Level::LoadLevel()
         string row;
         if (inputFile >> row)
         {
-            for (int x = 0; x < width_; ++x)
+            for (unsigned int x = 0; x < width_; ++x)
             {
-                layout_[y][x] = row[x];
+                if (x >= row.length())
+                {
+                    layout_[y][x] = '#';
+                }
+                else
+                {
+                    layout_[y][x] = row[x];
+                }
             }
         }
         else
