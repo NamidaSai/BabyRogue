@@ -38,7 +38,10 @@ void Level::LoadLevel()
         }
         else
         {
-            break;
+            for (unsigned int x = 0; x < width_; ++x)
+            {
+                layout_[y][x] = '#';
+            }
         }
     }
 }
