@@ -2,6 +2,7 @@
 #include "Level.h"
 
 #include <iostream>
+#include <cstdio>
 
 using namespace std;
 
@@ -12,20 +13,11 @@ Display::Display()
 void Display::GameCanvas()
 {
     // higher screen margin and border
-
-    for (int i = 0; i < width_; ++i)
+    cout << string(width_, edgeChar) << endl;
+    for (int i = 0; i < heightMargin_; ++i)
     {
-        cout << '#';
+        printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
     }
-    cout << endl;
-
-    cout << '#';
-    for (int i = 1; i < width_-1; ++i)
-    {
-        cout << ' ';
-    }
-    cout << '#';
-    cout << endl;
 
     // Main Screen
 
@@ -33,7 +25,7 @@ void Display::GameCanvas()
 
     for (int y = 0; y < level.GetHeight(); ++y)
     {
-        cout << "# ";
+        printf("%*c", -widthMargin_, edgeChar);
 
         for (int x = 0; x < level.GetWidth(); ++x)
         {
@@ -41,29 +33,14 @@ void Display::GameCanvas()
             cout << level.GetTile(x, y);
         }
 
-        int remainingWidth = (width_ - level.GetWidth() - 3);
-        for (int i = 0; i < remainingWidth; ++i)
-        {
-            cout << ' ';
-        }
-        cout << '#' << endl;
+        int remainingWidth = (width_ - level.GetWidth() - 2);
+        printf("%*c\n", remainingWidth, edgeChar);
     }
-
-
 
     // lower screen margin and border
-   
-    cout << '#';
-    for (int i = 1; i < width_-1; ++i)
+    for (int i = 0; i < heightMargin_; ++i)
     {
-        cout << ' ';
+        printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
     }
-    cout << '#';
-    cout << endl;
-
-    for (int i = 0; i < width_; ++i)
-    {
-        cout << '#';
-    }
-    cout << endl;
+    cout << string(width_, edgeChar) << endl;
 }

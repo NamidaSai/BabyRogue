@@ -8,8 +8,11 @@ class Display
         void GameCanvas();
 
     private:
-        static const int width_ = 120;
-        static const int height_ = 30;
+        int width_ = 120;
+        int height_ = 30;
+        int widthMargin_ = 2;
+        int heightMargin_ = 1;
+        char edgeChar = '%';
 };
 
 #endif /* DISPLAY_H */
