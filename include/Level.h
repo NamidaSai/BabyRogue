@@ -13,6 +13,9 @@ class Level
         char GetTile(int x, int y);
         void SetTile(int x, int y, char tile);
 
+        int GetWidth() { return width_; }
+        int GetHeight() { return height_; }
+
     private:
         void LoadLevel();
 

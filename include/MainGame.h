@@ -1,8 +1,8 @@
 #ifndef MAINGAME_H
 #define MAINGAME_H
 
-#include "Level.h"
 #include "InputHandler.h"
+#include "Display.h"
 
 class MainGame
 {
@@ -14,8 +14,9 @@ class MainGame
     private:
         void ProcessInput();
         void Update();
-        void Render(Level level);
+        void Render();
 
+        Display display;
         InputHandler input;
         
         bool isRunning_;

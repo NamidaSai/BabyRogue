@@ -7,6 +7,6 @@ int main()
     MainGame game;
     game.RunGame();
 
-    system("PAUSE");
+    // system("PAUSE");
     return 0;
 }

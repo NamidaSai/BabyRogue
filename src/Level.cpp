@@ -72,7 +72,7 @@ char Level::GetTile(int x, int y)
     }
     else
     {
-        return layout_[x][y];
+        return layout_[y][x];
     }
 }
 

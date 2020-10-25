@@ -8,18 +8,18 @@ MainGame::MainGame()
 {
     isRunning_ = true;
     input = InputHandler();
+    display = Display();
 }
 
 void MainGame::RunGame()
 {
-    Level currentLevel("Levels/sandbox.txt");
     std::cout << "Press any key to start. (ESC to Quit)\n";
 
     while (isRunning_)
     {
         ProcessInput();
         Update();
-        Render(currentLevel);
+        Render();
     }
 }
 
@@ -46,7 +46,7 @@ void MainGame::Update()
 {
 }
 
-void MainGame::Render(Level level)
+void MainGame::Render()
 {
-    level.PrintLevel();
+    display.GameCanvas();
 }
