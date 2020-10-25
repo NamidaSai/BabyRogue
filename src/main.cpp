@@ -1,12 +1,11 @@
 #include <iostream>
 
-#include "Level.h"
+#include "MainGame.h"
 
 int main()
 {
-    Level sandbox("Levels/sandbox.txt");
-    sandbox.LoadLevel();
-    sandbox.PrintLevel();
+    MainGame game;
+    game.RunGame();
 
     system("PAUSE");
     return 0;

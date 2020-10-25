@@ -6,6 +6,7 @@
 Level::Level(string levelName)
 {
     levelName_ = levelName;
+    LoadLevel();
 }
 
 void Level::LoadLevel()
@@ -45,6 +46,10 @@ void Level::LoadLevel()
         }
     }
 }
+
+
+//******************** PUBLIC FUNCTIONS ********************//
+
 
 void Level::PrintLevel()
 {
