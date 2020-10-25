@@ -11,9 +11,10 @@ class Level
         Level(string levelName);
         void LoadLevel();
         void PrintLevel();
+        char GetTile(int x, int y);
+        void SetTile(int x, int y, char tile);
 
     private:
-
         string levelName_;
         static const int width_ = 100;
         static const int height_ = 20;

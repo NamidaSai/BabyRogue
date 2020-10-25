@@ -57,3 +57,29 @@ void Level::PrintLevel()
         cout << endl;
     }
 }
+
+char Level::GetTile(int x, int y)
+{
+    if (x > width_ || y > height_)
+    {
+        cout << "The tile at x = " << x << " and y = " << y << " is out of the level's range.\n";
+        return 0;
+    }
+    else
+    {
+        return layout_[x][y];
+    }
+}
+
+void Level::SetTile(int x, int y, char tile)
+{
+    if (x > width_ || y > height_)
+    {
+        cout << "The tile at x = " << x << " and y = " << y << " is out of the level's range.\n";
+        return;
+    }
+    else
+    {
+        layout_[x][y] = tile;
+    }
+}
