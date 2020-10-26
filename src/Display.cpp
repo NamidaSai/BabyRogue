@@ -1,5 +1,4 @@
 #include "Display.h"
-#include "Level.h"
 
 #include <iostream>
 #include <cstdio>
@@ -15,7 +14,7 @@ void Display::ClearCanvas()
     cout << string(height_, '\n');
 }
 
-void Display::GameCanvas()
+void Display::GameCanvas(Level level)
 {
     // higher screen margin and border
     cout << string(width_, edgeChar) << endl;
@@ -25,8 +24,6 @@ void Display::GameCanvas()
     }
 
     // Level and HUD
-
-    Level level("Levels/sandbox.txt");
 
     for (int y = 0; y < level.GetHeight(); ++y)
     {

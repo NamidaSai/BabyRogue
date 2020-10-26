@@ -8,6 +8,7 @@ using namespace std;
 class Level
 {
     public:
+        Level();
         Level(string levelName);
         void PrintLevel();
         char GetTile(int x, int y);

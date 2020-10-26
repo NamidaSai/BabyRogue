@@ -3,6 +3,12 @@
 #include <iostream>
 #include <fstream>
 
+Level::Level()
+{
+    levelName_ = "Levels/sandbox.txt";
+    LoadLevel();
+}
+
 Level::Level(string levelName)
 {
     levelName_ = levelName;

@@ -1,12 +1,14 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
+#include "Level.h"
+
 class Display
 {
     public:
         Display();
         void ClearCanvas();
-        void GameCanvas();
+        void GameCanvas(Level level);
 
     private:
         int width_ = 119;

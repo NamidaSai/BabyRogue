@@ -1,4 +1,5 @@
 #include "MainGame.h"
+#include "Player.h"
 
 #include <iostream>
 
@@ -7,18 +8,14 @@ MainGame::MainGame()
     isRunning_ = true;
     input = InputHandler();
     display = Display();
+    currentLevel = Level();
 }
 
 void MainGame::RunGame()
 {
     std::cout << "Press any key to start. (ESC to Quit)\n";
-
-    while (isRunning_)
-    {
-        Update();
-        Render();
-        ProcessInput();
-    }
+    ProcessInput();
+    GameLoop();
 }
 
 void MainGame::EndGame()
@@ -27,9 +24,22 @@ void MainGame::EndGame()
 }
 
 
-
 //******************** PRIVATE FUNCTIONS ********************//
 
+
+void MainGame::GameLoop()
+{
+    Player player;
+    gameObjects_[0] = &player;
+    numberOfObjects_++;
+
+    while (isRunning_)
+    {
+        Update();
+        Render();
+        ProcessInput();
+    }
+}
 
 void MainGame::ProcessInput()
 {
@@ -42,10 +52,14 @@ void MainGame::ProcessInput()
 
 void MainGame::Update()
 {
+    for (int i = 0; i < numberOfObjects_; ++i)
+    {
+        gameObjects_[i]->Update();
+    }
 }
 
 void MainGame::Render()
 {
     display.ClearCanvas();
-    display.GameCanvas();
+    display.GameCanvas(currentLevel);
 }

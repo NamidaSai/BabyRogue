@@ -1,15 +1,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-class Player
+#include "GameObject.h"
+
+class Player : public GameObject
 {
     public:
         Player();
-        void InitPosition();
-
-    private:
-        int xPosition_;
-        int yPosition_;
+        
+        virtual void Update();
 };
 
 

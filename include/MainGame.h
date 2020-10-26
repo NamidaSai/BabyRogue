@@ -3,6 +3,8 @@
 
 #include "InputHandler.h"
 #include "Display.h"
+#include "Level.h"
+#include "GameObject.h"
 
 class MainGame
 {
@@ -12,14 +14,19 @@ class MainGame
         void EndGame();
 
     private:
+        void GameLoop();
+
         void ProcessInput();
         void Update();
         void Render();
 
         Display display;
         InputHandler input;
+        Level currentLevel;
         
         bool isRunning_;
+        GameObject* gameObjects_[16];
+        int numberOfObjects_ = 0;
 };
 
 
