@@ -9,6 +9,9 @@ class Player : public GameObject
         Player();
         
         virtual void Update();
+        
+    private:
+        char sprite_ = '@';
 };
 
 

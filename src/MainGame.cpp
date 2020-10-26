@@ -7,14 +7,13 @@ MainGame::MainGame()
 {
     isRunning_ = true;
     input = InputHandler();
-    display = Display();
-    currentLevel = Level();
 }
 
 void MainGame::RunGame()
 {
     std::cout << "Press any key to start. (ESC to Quit)\n";
     ProcessInput();
+    InitScenes();
     GameLoop();
 }
 
@@ -26,18 +25,19 @@ void MainGame::EndGame()
 
 //******************** PRIVATE FUNCTIONS ********************//
 
+void MainGame::InitScenes()
+{
+    allScenes_[0] = Scene("Levels/sandbox.txt");
+    numberOfScenes_++;
+}
 
 void MainGame::GameLoop()
 {
-    Player player;
-    gameObjects_[0] = &player;
-    numberOfObjects_++;
-
     while (isRunning_)
     {
-        Update();
-        Render();
         ProcessInput();
+        allScenes_[currentScene_].Update();
+        allScenes_[currentScene_].Render();
     }
 }
 
@@ -50,16 +50,7 @@ void MainGame::ProcessInput()
     }
 }
 
-void MainGame::Update()
+void MainGame::LoadNextScene()
 {
-    for (int i = 0; i < numberOfObjects_; ++i)
-    {
-        gameObjects_[i]->Update();
-    }
-}
-
-void MainGame::Render()
-{
-    display.ClearCanvas();
-    display.GameCanvas(currentLevel);
+    currentScene_++;
 }
