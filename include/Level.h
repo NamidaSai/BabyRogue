@@ -20,8 +20,8 @@ class Level
         void LoadLevel();
 
         string levelName_;
-        static const int width_ = 100;
-        static const int height_ = 20;
+        static const int width_ = 75;
+        static const int height_ = 17;
         char layout_[height_][width_];
 };
 

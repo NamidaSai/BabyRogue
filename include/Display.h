@@ -9,8 +9,8 @@ class Display
         void GameCanvas();
 
     private:
-        int width_ = 140;
-        int height_ = 30;
+        int width_ = 119;
+        int height_ = 29;
         int widthMargin_ = 2;
         int heightMargin_ = 1;
         char edgeChar = '%';

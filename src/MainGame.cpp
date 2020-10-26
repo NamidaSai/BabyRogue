@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#define esc 27
-
 MainGame::MainGame()
 {
     isRunning_ = true;
@@ -36,7 +34,7 @@ void MainGame::EndGame()
 void MainGame::ProcessInput()
 {
     char in = input.GetInput();
-    if (in == esc)
+    if (in == 'q')
     {
         EndGame();
     }
