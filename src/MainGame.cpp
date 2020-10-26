@@ -17,9 +17,9 @@ void MainGame::RunGame()
 
     while (isRunning_)
     {
-        ProcessInput();
         Update();
         Render();
+        ProcessInput();
     }
 }
 
@@ -48,5 +48,6 @@ void MainGame::Update()
 
 void MainGame::Render()
 {
+    display.ClearCanvas();
     display.GameCanvas();
 }

@@ -10,6 +10,11 @@ Display::Display()
 {
 }
 
+void Display::ClearCanvas()
+{
+    cout << string(height_, '\n');
+}
+
 void Display::GameCanvas()
 {
     // higher screen margin and border
@@ -19,7 +24,7 @@ void Display::GameCanvas()
         printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
     }
 
-    // Main Screen
+    // Level and HUD
 
     Level level("Levels/sandbox.txt");
 
@@ -35,6 +40,14 @@ void Display::GameCanvas()
 
         int remainingWidth = (width_ - level.GetWidth() - 2);
         printf("%*c\n", remainingWidth, edgeChar);
+    }
+
+    // Event Messages
+
+    int remainingHeight = height_ - level.GetHeight() - (heightMargin_ * 2) - 2;
+    for (int y = 0; y < remainingHeight; ++y)
+    {
+        printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
     }
 
     // lower screen margin and border
