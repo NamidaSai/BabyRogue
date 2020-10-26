@@ -1,13 +1,15 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+#include "Level.h"
+
 class GameObject
 {
     public:
         GameObject()
         : x_(0), y_(0) {}
 
-        virtual void Update() = 0;
+        virtual void Update(Level &level) = 0;
 
         int GetX() { return x_; }
         int GetY() { return y_; }

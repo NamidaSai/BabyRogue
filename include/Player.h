@@ -8,8 +8,10 @@ class Player : public GameObject
     public:
         Player();
         
-        virtual void Update();
-        
+        virtual void Update(Level &level);
+
+        char GetSprite() { return sprite_; }
+
     private:
         char sprite_ = '@';
 };

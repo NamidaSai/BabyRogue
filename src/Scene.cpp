@@ -26,7 +26,7 @@ void Scene::Update()
 {
     for (int i = 0; i < numberOfObjects_; ++i)
     {
-        gameObjects_[i]->Update();
+        gameObjects_[i]->Update(level);
     }
 }
 

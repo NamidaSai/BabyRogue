@@ -7,7 +7,8 @@ Player::Player()
 
 }
 
-void Player::Update()
+void Player::Update(Level &level)
 {
     std::cout << "Player was updated.\n";
+    level.SetTile(GetX(), GetY(), sprite_);
 }
