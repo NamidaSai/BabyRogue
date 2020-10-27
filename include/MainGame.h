@@ -21,6 +21,7 @@ class MainGame
         void Render();
 
         void HandlePlayerMovement(char input);
+        bool PlayerCanMoveToTarget(int x, int y);
 
         Display display;
         Player player;

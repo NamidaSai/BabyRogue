@@ -66,25 +66,47 @@ void MainGame::HandlePlayerMovement(char input)
     int x = player.GetX();
     int y = player.GetY();
 
+    int targetX = x;
+    int targetY = y;
+
     switch (input)
     {
         case 'w':
-            currentLevel.ResetTile(x, y); 
-            player.SetPosition(x, y-1);
+            targetY = y - 1;
             break;
         case 's':
-            currentLevel.ResetTile(x, y); 
-            player.SetPosition(x, y+1);
+            targetY = y + 1;
             break;
         case 'a':
-            currentLevel.ResetTile(x, y); 
-            player.SetPosition(x-1, y);
+            targetX = x - 1;
             break;
         case 'd':
-            currentLevel.ResetTile(x, y); 
-            player.SetPosition(x+1, y);
+            targetX = x + 1;
             break;
         default:
             break;
+    }
+
+    if (PlayerCanMoveToTarget(targetX, targetY))
+    {
+        currentLevel.ResetTile(x, y);
+        player.SetPosition(targetX, targetY);
+    }
+    else
+    {
+        cout << "Can't move there!\n";
+    }
+}
+
+bool MainGame::PlayerCanMoveToTarget(int x, int y)
+{
+    switch (currentLevel.GetTile(x, y))
+    {
+        case '.':
+            return true;
+        case '#':
+            return false;
+        default:
+            return false;
     }
 }
