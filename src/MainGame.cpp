@@ -45,68 +45,16 @@ void MainGame::ProcessInput()
     }
     else
     {
-        HandlePlayerMovement(input);
+        player.HandleMovement(input, currentLevel);
     }
-    
 }
 
 void MainGame::Update()
 {
-    currentLevel.SetTile(player.GetX(), player.GetY(), player.GetSprite());
 }
 
 void MainGame::Render()
 {
     display.ClearCanvas();
     display.GameCanvas(currentLevel);
-}
-
-void MainGame::HandlePlayerMovement(char input)
-{
-    int x = player.GetX();
-    int y = player.GetY();
-
-    int targetX = x;
-    int targetY = y;
-
-    switch (input)
-    {
-        case 'w':
-            targetY = y - 1;
-            break;
-        case 's':
-            targetY = y + 1;
-            break;
-        case 'a':
-            targetX = x - 1;
-            break;
-        case 'd':
-            targetX = x + 1;
-            break;
-        default:
-            break;
-    }
-
-    if (PlayerCanMoveToTarget(targetX, targetY))
-    {
-        currentLevel.ResetTile(x, y);
-        player.SetPosition(targetX, targetY);
-    }
-    else
-    {
-        cout << "Can't move there!\n";
-    }
-}
-
-bool MainGame::PlayerCanMoveToTarget(int x, int y)
-{
-    switch (currentLevel.GetTile(x, y))
-    {
-        case '.':
-            return true;
-        case '#':
-            return false;
-        default:
-            return false;
-    }
 }

@@ -1,10 +1,15 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "Level.h"
+
 class Player
 {
     public:
         Player();
+
+        void HandleMovement(char input, Level& level);
+        bool CanMoveTo(int x, int y, Level level);
 
         int GetX() { return x_; }
         int GetY() { return y_; }
