@@ -8,7 +8,7 @@ class Player : public GameObject
     public:
         Player();
         
-        virtual void Update(Level &level);
+        virtual void Update();
 
         char GetSprite() { return sprite_; }
 

@@ -9,7 +9,8 @@ class GameObject
         GameObject()
         : x_(0), y_(0) {}
 
-        virtual void Update(Level &level) = 0;
+        virtual ~GameObject() {}
+        virtual void Update() = 0;
 
         int GetX() { return x_; }
         int GetY() { return y_; }

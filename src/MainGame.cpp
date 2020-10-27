@@ -7,11 +7,21 @@ MainGame::MainGame()
 {
     isRunning_ = true;
     input = InputHandler();
+    numberOfScenes_ = 0;
+    currentScene_ = 0;
+}
+
+MainGame::~MainGame()
+{
+    for (int i = 0; i < MAX_SCENES; ++i)
+    {
+        delete allScenes_[i];
+    }
 }
 
 void MainGame::RunGame()
 {
-    std::cout << "Press any key to start. (ESC to Quit)\n";
+    std::cout << "Press any key to start. (Q to Quit)\n";
     ProcessInput();
     InitScenes();
     GameLoop();
@@ -27,8 +37,12 @@ void MainGame::EndGame()
 
 void MainGame::InitScenes()
 {
-    allScenes_[0] = Scene("Levels/sandbox.txt");
+    Scene sandbox("Levels/sandbox.txt");
+    allScenes_[0] = &sandbox;
     numberOfScenes_++;
+    allScenes_[currentScene_]->Start();
+    allScenes_[currentScene_]->Update();
+    allScenes_[currentScene_]->Render();
 }
 
 void MainGame::GameLoop()
@@ -36,8 +50,8 @@ void MainGame::GameLoop()
     while (isRunning_)
     {
         ProcessInput();
-        allScenes_[currentScene_].Update();
-        allScenes_[currentScene_].Render();
+        allScenes_[currentScene_]->Update();
+        allScenes_[currentScene_]->Render();
     }
 }
 

@@ -1,7 +1,7 @@
 #ifndef MAINGAME_H
 #define MAINGAME_H
 
-#define MAX_SCENES 32
+#define MAX_SCENES 16
 
 #include "InputHandler.h"
 #include "Scene.h"
@@ -10,6 +10,8 @@ class MainGame
 {
     public:
         MainGame();
+        ~MainGame();
+        
         void RunGame();
         void EndGame();
 
@@ -22,9 +24,9 @@ class MainGame
 
         InputHandler input;
 
-        Scene allScenes_[MAX_SCENES];
-        int numberOfScenes_ = 0;
-        int currentScene_ = 0;
+        Scene* allScenes_[MAX_SCENES];
+        int numberOfScenes_;
+        int currentScene_;
         
         bool isRunning_;
 };

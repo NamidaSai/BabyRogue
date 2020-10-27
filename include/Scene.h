@@ -12,6 +12,8 @@ class Scene
     public:
         Scene();
         Scene(string levelName);
+        
+        ~Scene();
 
         void Start();
         void Update();
@@ -22,7 +24,7 @@ class Scene
         Level level;
         
         GameObject* gameObjects_[MAX_OBJECTS];
-        int numberOfObjects_ = 0;
+        int numberOfObjects_;
 };
 
 #endif /* SCENE_H */
