@@ -1,6 +1,8 @@
 #ifndef MAINGAME_H
 #define MAINGAME_H
 
+#define MAX_LEVELS 2
+
 #include "Display.h"
 #include "Player.h"
 #include "Level.h"
@@ -20,10 +22,14 @@ class MainGame
         void Render();
 
         void SwitchLevel();
+        void LoadLevels();
 
         Display display;
         Player player;
-        Level currentLevel;
+
+        Level levels_[MAX_LEVELS];
+        int numberOfLevels_;
+        int currentLevel_ = 0;
 
         bool isRunning_;
 };

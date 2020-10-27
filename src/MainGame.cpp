@@ -8,7 +8,6 @@ MainGame::MainGame()
     isRunning_ = true;
     display = Display();
     player = Player();
-    currentLevel = Level();
 }
 
 
@@ -17,10 +16,11 @@ MainGame::MainGame()
 
 void MainGame::RunGame()
 {
+    LoadLevels();
     std::cout << "Press any key to start. (Q to Quit)\n";
     system("PAUSE");
 
-    player.Spawn(currentLevel);
+    player.Spawn(levels_[currentLevel_]);
     Render();
     GameLoop();
 }
@@ -53,7 +53,7 @@ void MainGame::ProcessInput()
     }
     else
     {
-        player.HandleInput(input, currentLevel);
+        player.HandleInput(input, levels_[currentLevel_]);
     }
 }
 
@@ -65,13 +65,38 @@ void MainGame::Update()
 void MainGame::Render()
 {
     display.ClearCanvas();
-    display.GameCanvas(currentLevel);
+    display.GameCanvas(levels_[currentLevel_]);
 }
 
 void MainGame::SwitchLevel()
 {
-    if (currentLevel.isEnded())
+    if (levels_[currentLevel_].isLoadNext() && currentLevel_ < MAX_LEVELS)
+    {
+        currentLevel_++;
+        player.Spawn(levels_[currentLevel_]);
+    }
+    else if (levels_[currentLevel_].isLoadPrev() && currentLevel_ > 0)
+    {
+        currentLevel_--;
+        player.Spawn(levels_[currentLevel_]);
+    }
+    else if (currentLevel_ >= numberOfLevels_)
     {
         EndGame();
     }
+    else
+    {
+        return;
+    }
+}
+
+void MainGame::LoadLevels()
+{
+    Level maze("Levels/Maze.txt");
+    levels_[0] = maze;
+    numberOfLevels_++;
+
+    Level barracks("Levels/Barracks.txt");
+    levels_[1] = barracks;
+    numberOfLevels_++;
 }

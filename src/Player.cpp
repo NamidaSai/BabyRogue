@@ -90,7 +90,10 @@ bool Player::CanMoveTo(int x, int y, Level& level)
         case 'X':               // treasure
             return true;
         case 'Y':               // exit
-            level.EndLevel(true);
+            level.NextLevel(true);
+            return true;
+        case 'Z':
+            level.PrevLevel(true);
             return true;
         default:                // monster
             return false;

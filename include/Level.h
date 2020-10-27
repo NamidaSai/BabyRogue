@@ -13,8 +13,10 @@ class Level
 
         void PrintLevel();
 
-        void EndLevel(bool value) { isEnded_ = value; }
-        bool isEnded() { return isEnded_; }
+        void NextLevel(bool value) { loadNext_ = value; }
+        void PrevLevel(bool value) { loadPrev_ = value; }
+        bool isLoadNext() { return loadNext_; }
+        bool isLoadPrev() { return loadPrev_; }
         
         char GetTile(int x, int y);
         void SetTile(int x, int y, char tile);
@@ -31,7 +33,8 @@ class Level
         static const int height_ = 17;
         char layout_[height_][width_];
 
-        bool isEnded_ = false;
+        bool loadNext_ = false;
+        bool loadPrev_ = false;
 };
 
 #endif /* LEVEL_H */
