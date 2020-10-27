@@ -4,7 +4,7 @@ It is VERY IMPORTANT that your level respects the following rules if you want th
 It is recommended you use the "sandbox.txt" template file to create your level. Make a copy and get started!
 Simply replace any of the characters in the file by your level.
 
-Dimensions: 100 x 20 tiles.
+Dimensions: 75 x 17 tiles.
 
 # = wall
 . = empty

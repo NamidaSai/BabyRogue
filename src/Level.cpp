@@ -3,6 +3,12 @@
 #include <iostream>
 #include <fstream>
 
+Level::Level()
+{
+    levelName_ = "Levels/sandbox.txt";
+    LoadLevel();
+}
+
 Level::Level(string levelName)
 {
     levelName_ = levelName;
@@ -25,17 +31,31 @@ void Level::LoadLevel()
         string row;
         if (inputFile >> row)
         {
-            for (int x = 0; x < width_; ++x)
+            for (unsigned int x = 0; x < width_; ++x)
             {
-                layout_[y][x] = row[x];
+                if (x >= row.length())
+                {
+                    layout_[y][x] = '#';
+                }
+                else
+                {
+                    layout_[y][x] = row[x];
+                }
             }
         }
         else
         {
-            break;
+            for (unsigned int x = 0; x < width_; ++x)
+            {
+                layout_[y][x] = '#';
+            }
         }
     }
 }
+
+
+//******************** PUBLIC FUNCTIONS ********************//
+
 
 void Level::PrintLevel()
 {
@@ -47,4 +67,44 @@ void Level::PrintLevel()
         }
         cout << endl;
     }
+}
+
+char Level::GetTile(int x, int y)
+{
+    if (x > width_ || y > height_)
+    {
+        cout << "The tile at x = " << x << " and y = " << y << " is out of the level's range.\n";
+        return 0;
+    }
+    else
+    {
+        return layout_[y][x];
+    }
+}
+
+void Level::SetTile(int x, int y, char tile)
+{
+    if (x > width_ || y > height_)
+    {
+        cout << "The tile at x = " << x << " and y = " << y << " is out of the level's range.\n";
+        return;
+    }
+    else
+    {
+        layout_[y][x] = tile;
+    }
+}
+
+void Level::ResetTile(int x, int y)
+{
+    if (x > width_ || y > height_)
+    {
+        cout << "The tile at x = " << x << " and y = " << y << " is out of the level's range.\n";
+        return;
+    }
+    else
+    {
+        layout_[y][x] = '.';
+    }
+    
 }
