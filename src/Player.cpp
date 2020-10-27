@@ -13,7 +13,7 @@ Player::Player()
 /*************************** PUBLIC FUNCTIONS ***************************/
 
 
-void Player::HandleMovement(char input, Level& level)
+void Player::HandleInput(char input, Level& level)
 {
     int x = GetX();
     int y = GetY();
@@ -60,11 +60,17 @@ bool Player::CanMoveTo(int x, int y, Level level)
 {
     switch (level.GetTile(x, y))
     {
-        case '.':
-            return true;
-        case '#':
+        case '#':               // wall
             return false;
-        default:
+        case '.':               // empty
+            return true;
+        case '$':               // shop
+            return true;
+        case 'X':               // treasure
+            return true;
+        case 'Y':               // exit
+            return true;
+        default:                // monster
             return false;
     }
 }

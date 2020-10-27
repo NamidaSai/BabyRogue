@@ -8,7 +8,7 @@ class Player
     public:
         Player();
 
-        void HandleMovement(char input, Level& level);
+        void HandleInput(char input, Level& level);
 
         int GetX() { return x_; }
         int GetY() { return y_; }

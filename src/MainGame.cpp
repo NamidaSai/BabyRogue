@@ -49,7 +49,7 @@ void MainGame::ProcessInput()
     }
     else
     {
-        player.HandleMovement(input, currentLevel);
+        player.HandleInput(input, currentLevel);
     }
 }
 
