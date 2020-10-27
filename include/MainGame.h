@@ -19,6 +19,8 @@ class MainGame
         void Update();
         void Render();
 
+        void SwitchLevel();
+
         Display display;
         Player player;
         Level currentLevel;

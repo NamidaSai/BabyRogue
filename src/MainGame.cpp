@@ -18,6 +18,10 @@ MainGame::MainGame()
 void MainGame::RunGame()
 {
     std::cout << "Press any key to start. (Q to Quit)\n";
+    system("PAUSE");
+
+    player.Spawn(currentLevel);
+    Render();
     GameLoop();
 }
 
@@ -55,10 +59,19 @@ void MainGame::ProcessInput()
 
 void MainGame::Update()
 {
+    SwitchLevel();
 }
 
 void MainGame::Render()
 {
     display.ClearCanvas();
     display.GameCanvas(currentLevel);
+}
+
+void MainGame::SwitchLevel()
+{
+    if (currentLevel.isEnded())
+    {
+        EndGame();
+    }
 }

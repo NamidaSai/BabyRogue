@@ -13,6 +13,27 @@ Player::Player()
 /*************************** PUBLIC FUNCTIONS ***************************/
 
 
+void Player::Spawn(Level level)
+{
+    for (int y = 0; y < level.GetHeight(); ++y)
+    {
+        for (int x = 0; x < level.GetWidth(); ++x)
+        {
+            if (level.GetTile(x,y) == '@')
+            {
+                SetPosition(x, y);
+                return;
+            }
+            else
+            {
+                continue;
+            }
+        }
+    }
+    
+    std::cout << "Level's player start position not found.\n";
+}
+
 void Player::HandleInput(char input, Level& level)
 {
     int x = GetX();
@@ -56,7 +77,7 @@ void Player::HandleInput(char input, Level& level)
 /*************************** PRIVATE FUNCTIONS ***************************/
 
 
-bool Player::CanMoveTo(int x, int y, Level level)
+bool Player::CanMoveTo(int x, int y, Level& level)
 {
     switch (level.GetTile(x, y))
     {
@@ -69,6 +90,7 @@ bool Player::CanMoveTo(int x, int y, Level level)
         case 'X':               // treasure
             return true;
         case 'Y':               // exit
+            level.EndLevel(true);
             return true;
         default:                // monster
             return false;
