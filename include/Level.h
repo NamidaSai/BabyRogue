@@ -10,9 +10,12 @@ class Level
     public:
         Level();
         Level(string levelName);
+
         void PrintLevel();
+        
         char GetTile(int x, int y);
         void SetTile(int x, int y, char tile);
+        void ResetTile(int x, int y);
 
         int GetWidth() { return width_; }
         int GetHeight() { return height_; }

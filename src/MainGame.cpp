@@ -1,11 +1,11 @@
 #include "MainGame.h"
 
 #include <iostream>
+#include <conio.h>
 
 MainGame::MainGame()
 {
     isRunning_ = true;
-    input = InputHandler();
     display = Display();
     player = Player();
     currentLevel = Level();
@@ -14,7 +14,6 @@ MainGame::MainGame()
 void MainGame::RunGame()
 {
     std::cout << "Press any key to start. (Q to Quit)\n";
-    ProcessInput();
     GameLoop();
 }
 
@@ -39,11 +38,16 @@ void MainGame::GameLoop()
 
 void MainGame::ProcessInput()
 {
-    char in = input.GetInput();
-    if (in == 'q')
+    char input = getch();
+    if (input == 'q')
     {
         EndGame();
     }
+    else
+    {
+        HandlePlayerMovement(input);
+    }
+    
 }
 
 void MainGame::Update()
@@ -55,4 +59,32 @@ void MainGame::Render()
 {
     display.ClearCanvas();
     display.GameCanvas(currentLevel);
+}
+
+void MainGame::HandlePlayerMovement(char input)
+{
+    int x = player.GetX();
+    int y = player.GetY();
+
+    switch (input)
+    {
+        case 'w':
+            currentLevel.ResetTile(x, y); 
+            player.SetPosition(x, y-1);
+            break;
+        case 's':
+            currentLevel.ResetTile(x, y); 
+            player.SetPosition(x, y+1);
+            break;
+        case 'a':
+            currentLevel.ResetTile(x, y); 
+            player.SetPosition(x-1, y);
+            break;
+        case 'd':
+            currentLevel.ResetTile(x, y); 
+            player.SetPosition(x+1, y);
+            break;
+        default:
+            break;
+    }
 }

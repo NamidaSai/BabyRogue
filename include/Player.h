@@ -4,8 +4,7 @@
 class Player
 {
     public:
-        Player()
-        : x_(0), y_(0), sprite_('@') {}
+        Player();
 
         int GetX() { return x_; }
         int GetY() { return y_; }

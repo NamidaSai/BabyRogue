@@ -1,7 +1,6 @@
 #ifndef MAINGAME_H
 #define MAINGAME_H
 
-#include "InputHandler.h"
 #include "Display.h"
 #include "Player.h"
 #include "Level.h"
@@ -21,7 +20,8 @@ class MainGame
         void Update();
         void Render();
 
-        InputHandler input;
+        void HandlePlayerMovement(char input);
+
         Display display;
         Player player;
         Level currentLevel;

@@ -91,6 +91,20 @@ void Level::SetTile(int x, int y, char tile)
     }
     else
     {
-        layout_[x][y] = tile;
+        layout_[y][x] = tile;
     }
+}
+
+void Level::ResetTile(int x, int y)
+{
+    if (x > width_ || y > height_)
+    {
+        cout << "The tile at x = " << x << " and y = " << y << " is out of the level's range.\n";
+        return;
+    }
+    else
+    {
+        layout_[y][x] = '.';
+    }
+    
 }
