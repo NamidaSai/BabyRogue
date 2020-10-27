@@ -9,7 +9,6 @@ class Player
         Player();
 
         void HandleMovement(char input, Level& level);
-        bool CanMoveTo(int x, int y, Level level);
 
         int GetX() { return x_; }
         int GetY() { return y_; }
@@ -25,6 +24,7 @@ class Player
         int x_, y_;
         char sprite_;
 
+        bool CanMoveTo(int x, int y, Level level);
 };
 
 #endif /* PLAYER_H */

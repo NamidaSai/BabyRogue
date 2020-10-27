@@ -14,6 +14,10 @@ void Display::ClearCanvas()
     cout << string(height_, '\n');
 }
 
+
+/******************** PUBLIC FUNCTIONS ********************/
+
+
 void Display::GameCanvas(Level level)
 {
     // higher screen margin and border
@@ -54,3 +58,7 @@ void Display::GameCanvas(Level level)
     }
     cout << string(width_, edgeChar) << endl;
 }
+
+
+/******************** PRIVATE FUNCTIONS ********************/
+

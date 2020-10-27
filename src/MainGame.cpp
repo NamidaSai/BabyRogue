@@ -11,6 +11,10 @@ MainGame::MainGame()
     currentLevel = Level();
 }
 
+
+/******************** PUBLIC FUNCTIONS ********************/
+
+
 void MainGame::RunGame()
 {
     std::cout << "Press any key to start. (Q to Quit)\n";
@@ -23,7 +27,7 @@ void MainGame::EndGame()
 }
 
 
-//******************** PRIVATE FUNCTIONS ********************//
+/******************** PRIVATE FUNCTIONS ********************/
 
 
 void MainGame::GameLoop()

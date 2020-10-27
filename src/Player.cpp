@@ -9,6 +9,10 @@ Player::Player()
     sprite_ = '@';
 }
 
+
+/*************************** PUBLIC FUNCTIONS ***************************/
+
+
 void Player::HandleMovement(char input, Level& level)
 {
     int x = GetX();
@@ -39,13 +43,18 @@ void Player::HandleMovement(char input, Level& level)
     {
         level.ResetTile(x, y);
         SetPosition(targetX, targetY);
-        level.SetTile(GetX(), GetY(), GetSprite());
+        level.SetTile(x_, y_, sprite_);
     }
     else
     {
         std::cout << "Can't move there!\n";
+        system("PAUSE");
     }
 }
+
+
+/*************************** PRIVATE FUNCTIONS ***************************/
+
 
 bool Player::CanMoveTo(int x, int y, Level level)
 {

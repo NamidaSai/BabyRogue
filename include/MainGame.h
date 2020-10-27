@@ -15,13 +15,9 @@ class MainGame
 
     private:
         void GameLoop();
-
         void ProcessInput();
         void Update();
         void Render();
-
-        void HandlePlayerMovement(char input);
-        bool PlayerCanMoveToTarget(int x, int y);
 
         Display display;
         Player player;
