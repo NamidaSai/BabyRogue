@@ -11,9 +11,9 @@ class Monster{
         int GetHealth() { return health; }
         string GetType() { return type; }
     private:
-        int attack;
-        int defense;
-        int health;
+        int attack = 0;
+        int defense = 0;
+        int health = 0;
         string type;        
         void SetValues(string);
 };

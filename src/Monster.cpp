@@ -54,6 +54,7 @@ void Monster::SetValues(string choice){
         }
         if(!found){
             if (word == choice){
+                type = word;
                 found = true;
             }
         }
@@ -72,5 +73,13 @@ void Monster::SetValues(string choice){
             }
         }
     }
-    type = choice;
+    try {
+        if (type.empty()){
+            throw "Incorrect monster name";
+        }
+    }catch (const char* msg){
+        cout<<msg<<endl;
+        exit(0);
+    }
+    
 }
