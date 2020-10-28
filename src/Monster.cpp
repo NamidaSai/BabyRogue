@@ -5,7 +5,9 @@
 
 using namespace std;
 //TODO: monstertype does not exist in JSON
-Monster::Monster(string MonsterType){
+//TODO: change monstertype from troll to T and goblin to G
+
+Monster::Monster(string monsterType){
     auto [att,def,hp] = getValues(MonsterType);
     type = MonsterType;
     attack = att;
