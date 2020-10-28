@@ -4,7 +4,7 @@
 #include <regex>
 
 using namespace std;
-//TODO: monstertype does not exist in JSON
+
 //TODO: change monstertype from troll to T and goblin to G
 
 Monster::Monster(string monsterType){
