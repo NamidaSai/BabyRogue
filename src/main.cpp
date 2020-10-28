@@ -9,10 +9,10 @@ int main()
     // game.RunGame();
 
     Monster monster("Troll");
-    cout<<monster.type<<endl<<monster.attack<<endl<<monster.defense<<endl<<monster.health<<endl;
+    cout<<monster.GetType()<<endl<<monster.GetAttack()<<endl<<monster.GetDefense()<<endl<<monster.GetHealth()<<endl;
 
     Monster monster2("Goblin");
-    cout<<monster2.type<<endl<<monster2.attack<<endl<<monster2.defense<<endl<<monster2.health<<endl;
+    cout<<monster2.GetType()<<endl<<monster2.GetAttack()<<endl<<monster2.GetDefense()<<endl<<monster2.GetHealth()<<endl;
 
     system("PAUSE");
     return 0;

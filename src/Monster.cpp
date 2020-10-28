@@ -8,20 +8,15 @@ using namespace std;
 //TODO: change monstertype from troll to T and goblin to G
 
 Monster::Monster(string monsterType){
-    auto [att,def,hp] = getValues(MonsterType);
-    type = MonsterType;
-    attack = att;
-    defense = def;
-    health = hp;
+    SetValues(monsterType);
 }
 
-tuple<int,int,int> Monster::getValues(string choice){
+void Monster::SetValues(string choice){
     string myText;
     ifstream myFile("Data/monsters.json");
     bool found = false;
     string closedbracket = "}";
-    int attack, defense, health;
-
+    
     while(getline(myFile, myText)){
         int n = myText.length();
         char carray[n+1];
@@ -77,5 +72,5 @@ tuple<int,int,int> Monster::getValues(string choice){
             }
         }
     }
-    return {attack, defense, health};
+    type = choice;
 }
