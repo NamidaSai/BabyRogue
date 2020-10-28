@@ -11,7 +11,7 @@ Level::Level()
 
 Level::Level(string levelName)
 {
-    levelName_ = levelName;
+    levelName_ = "Levels/" + levelName + ".txt";
     LoadLevel();
 }
 
