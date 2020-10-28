@@ -1,14 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include "Monster.h"
-#include <bits/stdc++.h>
 #include <regex>
 
 using namespace std;
-
+//TODO: monstertype does not exist in JSON
 Monster::Monster(string MonsterType){
-    auto [attack,defense,health] = getValues(MonsterType);
+    auto [att,def,hp] = getValues(MonsterType);
     type = MonsterType;
+    attack = att;
+    defense = def;
+    health = hp;
 }
 
 tuple<int,int,int> Monster::getValues(string choice){
@@ -26,8 +28,6 @@ tuple<int,int,int> Monster::getValues(string choice){
         int wordend;
         string word;
         bool flag = false;
-        
-        int check;
         string value;
         string finalval;
 
@@ -72,10 +72,8 @@ tuple<int,int,int> Monster::getValues(string choice){
             }
             else if (strstr(myText.c_str(), closedbracket.c_str())){
                 break;
-       }
+            }
         }
     }
-
     return {attack, defense, health};
-
 }

@@ -13,4 +13,4 @@ class Monster{
         tuple<int,int,int> getValues(string);
 };
 
-#endif
+#endif /*MONSTHER_H*/
