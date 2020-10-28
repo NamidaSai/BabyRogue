@@ -8,12 +8,20 @@ MainGame::MainGame()
     isRunning_ = true;
     display = Display();
     player = Player();
-    currentLevel = Level();
 }
+
+
+/******************** PUBLIC FUNCTIONS ********************/
+
 
 void MainGame::RunGame()
 {
+    LoadLevels();
     std::cout << "Press any key to start. (Q to Quit)\n";
+    system("PAUSE");
+
+    player.Spawn(levels_[currentLevel_]);
+    Render();
     GameLoop();
 }
 
@@ -23,7 +31,7 @@ void MainGame::EndGame()
 }
 
 
-//******************** PRIVATE FUNCTIONS ********************//
+/******************** PRIVATE FUNCTIONS ********************/
 
 
 void MainGame::GameLoop()
@@ -45,68 +53,50 @@ void MainGame::ProcessInput()
     }
     else
     {
-        HandlePlayerMovement(input);
+        player.HandleInput(input, levels_[currentLevel_]);
     }
-    
 }
 
 void MainGame::Update()
 {
-    currentLevel.SetTile(player.GetX(), player.GetY(), player.GetSprite());
+    SwitchLevel();
 }
 
 void MainGame::Render()
 {
     display.ClearCanvas();
-    display.GameCanvas(currentLevel);
+    display.GameCanvas(levels_[currentLevel_]);
 }
 
-void MainGame::HandlePlayerMovement(char input)
+void MainGame::SwitchLevel()
 {
-    int x = player.GetX();
-    int y = player.GetY();
-
-    int targetX = x;
-    int targetY = y;
-
-    switch (input)
+    if (levels_[currentLevel_].isLoadNext() && currentLevel_ < MAX_LEVELS)
     {
-        case 'w':
-            targetY = y - 1;
-            break;
-        case 's':
-            targetY = y + 1;
-            break;
-        case 'a':
-            targetX = x - 1;
-            break;
-        case 'd':
-            targetX = x + 1;
-            break;
-        default:
-            break;
+        currentLevel_++;
+        player.Spawn(levels_[currentLevel_]);
     }
-
-    if (PlayerCanMoveToTarget(targetX, targetY))
+    else if (levels_[currentLevel_].isLoadPrev() && currentLevel_ > 0)
     {
-        currentLevel.ResetTile(x, y);
-        player.SetPosition(targetX, targetY);
+        currentLevel_--;
+        player.Spawn(levels_[currentLevel_]);
+    }
+    else if (currentLevel_ >= numberOfLevels_)
+    {
+        EndGame();
     }
     else
     {
-        cout << "Can't move there!\n";
+        return;
     }
 }
 
-bool MainGame::PlayerCanMoveToTarget(int x, int y)
+void MainGame::LoadLevels()
 {
-    switch (currentLevel.GetTile(x, y))
-    {
-        case '.':
-            return true;
-        case '#':
-            return false;
-        default:
-            return false;
-    }
+    Level maze("Levels/Maze.txt");
+    levels_[0] = maze;
+    numberOfLevels_++;
+
+    Level barracks("Levels/Barracks.txt");
+    levels_[1] = barracks;
+    numberOfLevels_++;
 }
