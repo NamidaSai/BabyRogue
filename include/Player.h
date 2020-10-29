@@ -11,6 +11,7 @@ class Player
 
         void Spawn(Level level);
         void HandleInput(char input, Level& level);
+        void AddMoney(int amount);
 
         int GetX() { return x_; }
         int GetY() { return y_; }
@@ -25,9 +26,12 @@ class Player
     private:
         int x_, y_;
         char sprite_;
+
         int health_;
         int attack_;
         int defense_;
+
+        int money_;
 
         bool CanMoveTo(int x, int y, Level& level);
         void Attack(Monster monster);

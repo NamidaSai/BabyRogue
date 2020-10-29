@@ -2,6 +2,7 @@
 #define LEVEL_H
 
 #include "Monster.h"
+#include "Chest.h"
 #include <string>
 #include <vector>
 
@@ -31,8 +32,9 @@ class Level
     private:
         void LoadLevel();
         void LoadObjects();
-        void SpawnMonster(int x, int y, char sprite);
+        void SpawnChest(int x, int y);
         void SpawnShop(int x, int y);
+        void SpawnMonster(int x, int y, char sprite);
 
         string levelName_;
         static const int width_ = 75;
@@ -40,6 +42,7 @@ class Level
         char layout_[height_][width_];
 
         vector<Monster> monsters_;
+        vector<Chest> chests_;
 
         bool loadNext_ = false;
         bool loadPrev_ = false;

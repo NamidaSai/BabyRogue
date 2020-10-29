@@ -75,6 +75,11 @@ void Player::HandleInput(char input, Level& level)
     }
 }
 
+void Player::AddMoney(int amount)
+{
+    money_ += amount;
+}
+
 
 /*************************** PRIVATE FUNCTIONS ***************************/
 
@@ -90,13 +95,14 @@ bool Player::CanMoveTo(int x, int y, Level& level)
         case '$':               // shop
             return true;
         case 'X':               // treasure
+            AddMoney(level.GetChest().GetMoney());
             return true;
         case 'Y':               // exit
             level.NextLevel(true);
-            return true;
+            return false;
         case 'Z':
             level.PrevLevel(true);
-            return true;
+            return false;
         default:                // monster
             Attack(level.GetMonster(x, y));
             return false;

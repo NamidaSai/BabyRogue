@@ -89,6 +89,27 @@ Monster Level::GetMonster(int x, int y)
     return 0;
 }
 
+Chest Level::GetChest(int x, int y)
+{
+    for (int i = 0; i < chests_.size(); ++i)
+    {
+        if (chests_[i].GetX() == x && chests_[i].GetY() == y)
+        {
+            Chest returnedChest = chests_[i];
+            chests_[i] = chests_.back();
+            chests_.pop_back();
+            return returnedChest;
+        }
+        else
+        {
+            continue;
+        }
+    }
+
+    cout << "No chest found at position " << x << "," << y << endl;
+    return 0;
+}
+
 
 /******************** PRIVATE FUNCTIONS ********************/
 
@@ -149,6 +170,9 @@ void Level::LoadObjects()
                     break;
                 case '@':
                     break;
+                case 'X':
+                    SpawnChest(x, y);
+                    break;
                 case '$':
                     SpawnShop(x, y);
                     break;
@@ -160,6 +184,17 @@ void Level::LoadObjects()
     }
 }
 
+void Level::SpawnChest(int x, int y)
+{
+    Chest chest;
+    chest.SetPosition(x, y); 
+    chests_.push_back(chest);
+}
+
+void Level::SpawnShop(int x, int y)
+{
+}
+
 void Level::SpawnMonster(int x, int y, char sprite)
 {
     Monster monster(sprite);
@@ -167,6 +202,3 @@ void Level::SpawnMonster(int x, int y, char sprite)
     monsters_.push_back(monster);
 }
 
-void Level::SpawnShop(int x, int y)
-{
-}
