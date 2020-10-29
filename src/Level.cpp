@@ -7,12 +7,14 @@ Level::Level()
 {
     levelName_ = "Levels/sandbox.txt";
     LoadLevel();
+    LoadObjects();
 }
 
 Level::Level(string levelName)
 {
     levelName_ = "Levels/" + levelName + ".txt";
     LoadLevel();
+    LoadObjects();
 }
 
 
