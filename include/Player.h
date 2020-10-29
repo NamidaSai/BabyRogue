@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "Level.h"
+#include "Monster.h"
 
 class Player
 {
@@ -24,8 +25,13 @@ class Player
     private:
         int x_, y_;
         char sprite_;
+        int health_;
+        int attack_;
+        int defense_;
 
         bool CanMoveTo(int x, int y, Level& level);
+        void Attack(Monster monster);
+        void TakeDamage(int amount);
 };
 
 #endif /* PLAYER_H */

@@ -1,6 +1,8 @@
 #include "Player.h"
 
 #include <iostream>
+#include <random>
+#include <ctime>
 
 Player::Player()
 {
@@ -96,6 +98,49 @@ bool Player::CanMoveTo(int x, int y, Level& level)
             level.PrevLevel(true);
             return true;
         default:                // monster
+            Attack(level.GetMonster(x, y));
             return false;
+    }
+}
+
+void Player::Attack(Monster monster)
+{
+    mt19937 randomGenerator(time(0));
+    uniform_real_distribution<int> attackRoll(1, 20);
+
+    int playerAttack = attackRoll(randomGenerator) + attack_;
+    int monsterAttack = attackRoll(randomGenerator) + monster.GetAttack();
+    int combatResult = playerAttack - monsterAttack;
+
+    if (combatResult > 0)
+    {
+        monster.TakeDamage(combatResult);
+    }
+    else if (combatResult == 0)
+    {
+        // send message "The player and monster hold each other in check!"
+    }
+    else
+    {
+        TakeDamage(combatResult);
+    }
+}
+
+void Player::TakeDamage(int amount)
+{
+    if (amount >= defense_)
+    {
+        damage = amount - defense_;
+        health_ -= damage;
+        // send message "The player took [damage] damage!"
+    }
+    else
+    {
+        // send message "The player's armor absorbed the blow!"
+    }
+
+    if (health_ <= 0)
+    {
+        // Game Over;
     }
 }

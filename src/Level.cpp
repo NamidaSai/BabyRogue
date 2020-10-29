@@ -71,6 +71,24 @@ void Level::ResetTile(int x, int y)
     
 }
 
+Monster Level::GetMonster(int x, int y)
+{
+    for (int i = 0; i < monsters_.size(); ++i)
+    {
+        if (monsters_[i].GetX() == x && monsters_[i].GetY() == y)
+        {
+            return monsters_[i];
+        }
+        else
+        {
+            continue;
+        }
+    }
+
+    cout << "No monster found at position " << x << "," << y << endl;
+    return 0;
+}
+
 
 /******************** PRIVATE FUNCTIONS ********************/
 
@@ -111,4 +129,44 @@ void Level::LoadLevel()
             }
         }
     }
+}
+
+void Level::LoadObjects()
+{
+    for (int y = 0; y < height_; ++y)
+    {
+        for (int x = 0; x < width_; ++x)
+        {
+            switch(layout_[y][x])
+            {
+                case '#':
+                    break;
+                case '.':
+                    break;
+                case 'Y':
+                    break;
+                case 'Z':
+                    break;
+                case '@':
+                    break;
+                case '$':
+                    SpawnShop(x, y);
+                    break;
+                default:
+                    SpawnMonster(x, y, layout_[y][x]);
+                    break;
+            }
+        }
+    }
+}
+
+void Level::SpawnMonster(int x, int y, char sprite)
+{
+    Monster monster(sprite);
+    monster.SetPosition(x, y);
+    monsters_.push_back(monster);
+}
+
+void Level::SpawnShop(int x, int y)
+{
 }

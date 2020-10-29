@@ -11,5 +11,6 @@ Dimensions: 75 x 17 tiles.
 @ = player
 $ = shop
 X = chest / treasure
-Y = exit level
+Y = exit level (next)
+Z = exit level (previous)
 [ANY OTHER LETTER] = monsters
