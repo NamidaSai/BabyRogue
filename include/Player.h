@@ -34,7 +34,7 @@ class Player
         int money_ = 0;
 
         bool CanMoveTo(int x, int y, Level& level);
-        void Attack(Monster monster);
+        void Attack(Monster& monster);
         void TakeDamage(int amount);
 };
 

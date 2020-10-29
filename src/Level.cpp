@@ -73,7 +73,7 @@ void Level::ResetTile(int x, int y)
     
 }
 
-Monster Level::GetMonster(int x, int y)
+Monster& Level::GetMonster(int x, int y)
 {
     for (int i = 0; i < monsters_.size(); ++i)
     {

@@ -109,7 +109,7 @@ bool Player::CanMoveTo(int x, int y, Level& level)
     }
 }
 
-void Player::Attack(Monster monster)
+void Player::Attack(Monster& monster)
 {
     mt19937 randomGenerator(time(0));
     uniform_real_distribution<int> attackRoll(1, 20);
