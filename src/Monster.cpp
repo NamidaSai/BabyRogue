@@ -5,8 +5,6 @@
 
 using namespace std;
 
-//TODO: change monstertype from troll to T and goblin to G
-
 Monster::Monster(string monsterType){
     SetValues(monsterType);
 }
