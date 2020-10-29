@@ -27,9 +27,9 @@ class Player
         int x_, y_;
         char sprite_;
 
-        int health_;
-        int attack_;
-        int defense_;
+        int health_ = 20;
+        int attack_ = 5;
+        int defense_ = 2;
 
         int money_;
 
