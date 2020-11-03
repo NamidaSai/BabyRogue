@@ -53,7 +53,7 @@ void Monster::SetValues(char choice){
         }
         
         if (word == "Sprite"){
-            for (int i = wordend + 2; i < strlen(carray); ++i){
+            for (int i = wordend + 2; i < n; ++i){
                 if (carray[i] == '"'){
                     sprite = carray[i+1]; //since our sprite is always one letter char its possible to do without finding length of sprite
                     if (sprite == choice){
