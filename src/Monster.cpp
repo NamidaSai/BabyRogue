@@ -5,11 +5,11 @@
 
 using namespace std;
 
-Monster::Monster(string monsterType){
-    SetValues(monsterType);
+Monster::Monster(char monsterSprite){
+    SetValues(monsterSprite);
 }
 
-void Monster::SetValues(string choice){
+void Monster::SetValues(char choice){
     string myText;
     ifstream myFile("Data/monsters.json");
     bool found = false;
@@ -18,9 +18,9 @@ void Monster::SetValues(string choice){
     while(getline(myFile, myText)){
         int n = myText.length();
         char carray[n+1];
-        int pos1;
-        int wordLength;
-        int wordend;
+        int pos1 = 0;
+        int wordLength = 0;
+        int wordend = 0;
         string word;
         bool flag = false;
         string value;
@@ -42,6 +42,7 @@ void Monster::SetValues(string choice){
                 else{
                     wordLength = i - pos1 - 1;
                     flag = false;
+                    break;
                 }                
             }
 
@@ -50,34 +51,41 @@ void Monster::SetValues(string choice){
         for (int i = pos1+1; i <= wordend; i++){
             word = word + carray[i];
         }
-        if(!found){
-            if (word == choice){
-                type = word;
-                found = true;
+        
+        if (word == "Sprite"){
+            for (int i = wordend + 2; i < strlen(carray); ++i){
+                if (carray[i] == '"'){
+                    sprite = carray[i+1]; //since our sprite is always one letter char its possible to do without finding length of sprite
+                    if (sprite == choice){
+                        found = true;
+                        break;
+                    }
+                }
             }
         }
-        else if(found){
-            if (word == "Health"){
-                health = stoi(finalval);
-            }
-            else if (word == "Defense"){
-                defense = stoi(finalval);
-            }
-            else if (word == "Attack"){
-                attack = stoi(finalval);
-            }
-            else if (strstr(myText.c_str(), closedbracket.c_str())){
-                break;
-            }
+        else if (word == "Health"){
+            health = stoi(finalval);
+        }
+        else if (word == "Defense"){
+            defense = stoi(finalval);
+        }
+        else if (word == "Attack"){
+            attack = stoi(finalval);
+        }
+        else if (wordLength > 0){
+            type = word;
+        }
+        else if (strstr(myText.c_str(), closedbracket.c_str()) && found == true){
+            break;
         }
     }
     try {
-        if (type.empty()){
+        if (found == false){
             throw "Incorrect monster name";
         }
     }catch (const char* msg){
         cout<<msg<<endl;
-        exit(0);
+        exit(0); 
     }
     
 }

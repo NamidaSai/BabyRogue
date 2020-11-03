@@ -5,19 +5,21 @@ using namespace std;
 
 class Monster{
     public:
-        Monster(string monsterType);
+        Monster(char monsterSprite);
         int GetAttack() { return attack; }
         int GetDefense() { return defense; }
         int GetHealth() { return health; }
         string GetType() { return type; }
-        int SetPosition (int x, int y) { x_ = x; y_ = y;} 
+        char GetSprite() { return sprite; }
+        void SetPosition (int x, int y) { x_ = x; y_ = y;} 
     private:
         int x_,y_;
+        char sprite;
         int attack = 0;
         int defense = 0;
         int health = 0;
         string type;        
-        void SetValues(string);
+        void SetValues(char);
 };
 
 #endif /*MONSTHER_H*/
