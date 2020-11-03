@@ -12,6 +12,8 @@ class Monster{
         string GetType() { return type; }
         char GetSprite() { return sprite; }
         void SetPosition (int x, int y) { x_ = x; y_ = y;} 
+        int GetX() { return x_; }
+        int GetY() { return y_; }
     private:
         int x_,y_;
         char sprite;
