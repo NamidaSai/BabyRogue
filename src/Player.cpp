@@ -95,7 +95,7 @@ bool Player::CanMoveTo(int x, int y, Level& level)
         case '$':               // shop
             return true;
         case 'X':               // treasure
-            AddMoney(level.GetChest().GetMoney());
+            AddMoney(level.GetChest(x, y).GetMoney());
             return true;
         case 'Y':               // exit
             level.NextLevel(true);
@@ -112,10 +112,10 @@ bool Player::CanMoveTo(int x, int y, Level& level)
 void Player::Attack(Monster& monster)
 {
     mt19937 randomGenerator(time(0));
-    uniform_real_distribution<int> attackRoll(1, 20);
+    uniform_real_distribution<float> attackRoll(1.0f, 20.0f);
 
-    int playerAttack = attackRoll(randomGenerator) + attack_;
-    int monsterAttack = attackRoll(randomGenerator) + monster.GetAttack();
+    int playerAttack = (int)attackRoll(randomGenerator) + attack_;
+    int monsterAttack = (int)attackRoll(randomGenerator) + monster.GetAttack();
     int combatResult = playerAttack - monsterAttack;
 
     if (combatResult > 0)
@@ -136,7 +136,7 @@ void Player::TakeDamage(int amount)
 {
     if (amount >= defense_)
     {
-        damage = amount - defense_;
+        int damage = amount - defense_;
         health_ -= damage;
         // send message "The player took [damage] damage!"
     }

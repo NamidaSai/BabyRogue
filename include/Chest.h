@@ -8,8 +8,8 @@ class Chest
         Chest(int amount)
         : money_(amount) {}
 
-        int GetX();
-        int GetY();
+        int GetX() { return x_; }
+        int GetY() { return y_; }
         int GetMoney() { return money_; }
 
         void SetPosition(int x, int y)

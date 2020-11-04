@@ -27,7 +27,8 @@ class Level
 
         int GetWidth() { return width_; }
         int GetHeight() { return height_; }
-        Monster GetMonster(int x, int y);
+        Monster& GetMonster(int x, int y);
+        Chest GetChest(int x, int y);
 
     private:
         void LoadLevel();

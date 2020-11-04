@@ -75,7 +75,7 @@ void Level::ResetTile(int x, int y)
 
 Monster& Level::GetMonster(int x, int y)
 {
-    for (int i = 0; i < monsters_.size(); ++i)
+    for (unsigned int i = 0; i < monsters_.size(); ++i)
     {
         if (monsters_[i].GetX() == x && monsters_[i].GetY() == y)
         {
@@ -86,14 +86,11 @@ Monster& Level::GetMonster(int x, int y)
             continue;
         }
     }
-
-    cout << "No monster found at position " << x << "," << y << endl;
-    return 0;
 }
 
 Chest Level::GetChest(int x, int y)
 {
-    for (int i = 0; i < chests_.size(); ++i)
+    for (unsigned int i = 0; i < chests_.size(); ++i)
     {
         if (chests_[i].GetX() == x && chests_[i].GetY() == y)
         {
