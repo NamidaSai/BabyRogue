@@ -1,0 +1,23 @@
+{
+    "Apron":{
+        "Cost": 20,
+        "Attack": 0,
+        "Defense": 60,
+        "Health": 10,
+        "Consumable": "true"
+    },
+    "Nose Plugs":{
+        "Cost": 10,
+        "Attack": 0,
+        "Defense": 30,
+        "Health": 0,
+        "Consumable": "false"
+    },
+    "Milk":{
+        "Cost": 10,
+        "Attack": 0,
+        "Defense": 0,
+        "Health": 100,
+        "Consumable": "false"
+    }
+}
