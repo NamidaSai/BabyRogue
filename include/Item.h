@@ -7,6 +7,15 @@ class Item {
         Item();
         
 
+    private:
+        int attack;
+        int defense;
+        int health;
+        int cost;
+        bool consumable;
+        void SetValues();
+
+
 
 };
 
