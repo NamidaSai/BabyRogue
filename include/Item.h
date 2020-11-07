@@ -5,7 +5,7 @@ using namespace std;
 class Item {
     public:
         Item();
-        
+        void SetValues();
 
     private:
         int attack;
@@ -13,7 +13,7 @@ class Item {
         int health;
         int cost;
         bool consumable;
-        void SetValues();
+ 
 
 
 
