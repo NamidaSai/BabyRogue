@@ -6,16 +6,17 @@
 
 using namespace std;
 
-Item::Item(){
-    cout<<"Function called"<<endl;
-    SetValues();
+Item::Item(int choice){
+    SetValues(choice);
+    
 }
 
-void Item::SetValues(){
+void Item::SetValues(int choice){
     string text;
+    bool found = false;
     ifstream file("Data/item.json");
-    
-    cout<<"function called"<<endl;
+    string openBracket = "{";
+    string closedBracket = "}";
 
     while(getline(file,text)){
         int n = text.length();
@@ -35,12 +36,6 @@ void Item::SetValues(){
         );
 
         strcpy(carray, text.c_str());
-        //count the number of "
-        for (int i = 0; i < n; i++){
-            if (carray[i] == '"'){
-                totalQuotes += 1;
-            }
-        }
 
         for (int i = 0; i < n; i++){
             if (carray[i] == '"'){
@@ -59,5 +54,44 @@ void Item::SetValues(){
         for (int i = pos1 + 1; i <= wordEnd; i++){
             word = word + carray[i];
         }
+        if (word == "Cost"){
+            cost = stoi(num);
+        }
+        else if (word == "id"){
+            if (choice == stoi(num)){
+                found = true;
+            }
+        }
+        else if (word == "Attack"){ 
+            attack = stoi(num);
+        }
+        else if (word == "Defense"){
+            defense = stoi(num);
+        }
+        else if (word == "Health"){
+            health = stoi(num);
+        }
+        else if (word == "Consumable"){
+            if (stoi(num) == 1){
+                consumable = true;
+            }
+            else{
+                consumable = false;
+            }
+        }
+        else if (wordLength > 0){
+            name = word;
+        }
+        else if (strstr(text.c_str(), closedBracket.c_str()) && found == true){
+            break;
+        }
+    }
+    try {
+        if (found == false){
+            throw "Incorrect Item ID provided";
+        }
+    }catch (const char* msg){
+        cout<<msg<<endl;
+        exit(0);
     }
 }
