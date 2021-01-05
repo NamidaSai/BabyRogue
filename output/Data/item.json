@@ -1,0 +1,26 @@
+{
+    "Apron":{
+        "id": 1,
+        "Cost": 20,
+        "Attack": 0,
+        "Defense": 60,
+        "Health": 10,
+        "Consumable": 1
+    },
+    "Nose Plugs":{
+        "id": 2,
+        "Cost": 10,
+        "Attack": 0,
+        "Defense": 30,
+        "Health": 0,
+        "Consumable": 0
+    },
+    "Milk":{
+        "id": 3,
+        "Cost": 10,
+        "Attack": 0,
+        "Defense": 0,
+        "Health": 100,
+        "Consumable": 1
+    }
+}
