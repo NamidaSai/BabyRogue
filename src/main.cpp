@@ -1,12 +1,64 @@
 #include <iostream>
-
+#include <ctime>
+#include <stdlib.h>
+#include <time.h>
 #include "MainGame.h"
 #include "ItemManager.h"
+#include <algorithm>
+#include "Item.h"
+#include <vector>
+
+using namespace std;
+
+int * getRandom( ) {
+
+   static int  r[10];
+
+   // set the seed
+   srand( (unsigned)time( NULL ) );
+   
+   for (int i = 0; i < 10; ++i) {
+      r[i] = rand();
+      cout << r[i] << endl;
+   }
+
+   return r;
+}
 
 int main()
 {
-    ItemManager myItemManager;
-    cout<<myItemManager.GetMaxItems();
+    ItemManager myItems;
+    myItems.getShopItems(1,3);
+    vector<Item> shop;
+    shop = myItems.GetItems();
+    for (auto& shopItem : shop){
+        cout<<"The defense is: "<<shopItem.GetDefense()<<endl;
+    }
+
+    // srand(time(NULL));
+    // int randitem = rand() % 5;
+    // cout<<randitem<<endl;
+    // randitem = rand() % 5;
+    // cout<<randitem<<endl;
+    // randitem = rand() % 5;
+    // cout<<randitem<<endl;
+    // randitem = rand() % 5;
+    // cout<<randitem<<endl;
+    // randitem = rand() % 5;
+    // cout<<randitem<<endl;
+    // a pointer to an int.
+//    int *p;
+
+//    p = getRandom();
+   
+//    for ( int i = 0; i < 10; i++ ) {
+//       cout << "p[i]: " << i << ") : ";
+//       cout << p[i] << endl;
+//    }
+
+   return 0;
+    //ItemManager myItemManager;
+    //cout<<myItemManager.GetMaxItems();
     // MainGame game;
     // game.RunGame();
     //Item myItem(3);
@@ -15,5 +67,6 @@ int main()
     //char carray[] = {'A','B', 'C'};
     //cout<<carray[-2];
     //system("PAUSE");  
-    return 0;
+    //return 0;
 }
+

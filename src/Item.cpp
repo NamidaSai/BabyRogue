@@ -6,10 +6,10 @@
 
 using namespace std;
 
-Item::Item(int choice){
-    SetValues(choice);
+// Item::Item(int choice){
+//     SetValues(choice);
     
-}
+// }
 
 void Item::SetValues(int choice){
     string text;
