@@ -9,6 +9,10 @@
 
 using namespace std;
 
+ItemManager::ItemManager(){
+    GetAllShopItemsFromItem();
+}
+
 int ItemManager::GetMaxItems(){
     int maxID = 0;
     string text;
@@ -61,10 +65,15 @@ int ItemManager::GetMaxItems(){
 }
 
 Item * ItemManager::getShopItems(int minItems, int maxNoItems) {
-    const int maxItems = GetMaxItems();
-    // if (maxNoItems < maxItems){
-    //     maxItems = maxNoItems;
-    // }
+    const int maxItems = GetMaxItems() - idArray.size();
+    
+    //need to subtract the idArray length here from maxItems
+    if (maxNoItems > maxItems){
+        maxNoItems = maxItems;
+    }
+    if (minItems > maxItems){
+        minItems = maxItems;
+    }
     srand(time(NULL));
     const int randTotalItems = rand() % (maxNoItems - minItems + 1) + minItems;
     cout<<"Total Items are: "<<randTotalItems<<endl;
@@ -72,7 +81,7 @@ Item * ItemManager::getShopItems(int minItems, int maxNoItems) {
     bool isFull = false;
     bool isPresent = false;
     //int idArray[randTotalItems];
-    vector<int> idArray;
+    //vector<int> idArray;
     int i = 0;
     while(i < randTotalItems){
         int randID = rand() % (maxNoItems - minItems + 1) + minItems;
@@ -88,4 +97,24 @@ Item * ItemManager::getShopItems(int minItems, int maxNoItems) {
     }
     
     return shopItems;
+}
+
+void ItemManager::GetAllShopItemsFromItem(){
+    const int maxItems = GetMaxItems();
+    for (int i = 1; i <= maxItems; i++){
+        Item item;
+        item.SetValues(i);
+        allShopItems.push_back(item);
+    }
+    remainingShopItems = allShopItems;
+}
+
+void ItemManager::UpdateRemainingItems(vector<int> eraseItems){
+    vector<Item> temp;
+    for (int i = 0; i < remainingShopItems.size(); i++){
+        if (find(begin(eraseItems), end(eraseItems), i) == end(eraseItems)){
+            temp.push_back(remainingShopItems[i]);
+        }
+    }
+    remainingShopItems = temp;
 }

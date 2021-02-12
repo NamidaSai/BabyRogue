@@ -4,6 +4,7 @@
 #include <time.h>
 #include "MainGame.h"
 #include "ItemManager.h"
+#include "Shop.h"
 #include <algorithm>
 #include "Item.h"
 #include <vector>
@@ -28,13 +29,50 @@ int * getRandom( ) {
 int main()
 {
     ItemManager myItems;
-    myItems.getShopItems(1,3);
-    vector<Item> shop;
-    shop = myItems.GetItems();
-    for (auto& shopItem : shop){
-        cout<<"The defense is: "<<shopItem.GetDefense()<<endl;
+    vector<Shop> shops;
+    vector<string> shopNames;
+    //now we encounter a $
+    string leveltile = "$";
+    if (leveltile == "$"){
+        for (auto& shop : shops){
+            shopNames.push_back(shop.GetShopName());
+        }
+        Shop tempShop(shopNames);
+        vector<int> eraseItems = tempShop.SetShopItems(1,2,myItems.GetRemainingShopItems());
+        myItems.UpdateRemainingItems(eraseItems);
+        shops.push_back(tempShop);
     }
+    for (auto& shop : shops){
+        cout<<"Shop name: "<<shop.GetShopName()<<endl;
+        cout<<"shop money: "<<shop.GetShopMoney()<<endl;
+        vector<Item> shopItems = shop.GetShopItems();
+        cout<<"shop defense: "<<shopItems[0].GetDefense();
+    }
+    // ItemManager myItems;
+    // vector<Item> shop = myItems.GetAllShopItems();
+    // for (auto& shopItem : shop){
+    //     cout<<"The defense is: "<<shopItem.GetDefense()<<endl;
+    // }
+    // shop.erase(shop.begin() + 1);
+    // for (auto& shopItem : shop){
+    //     cout<<"The defense is: "<<shopItem.GetDefense()<<endl;
+    // }
 
+    // ItemManager myItems;
+    // myItems.getShopItems(1,2);
+    // vector<Item> shop;
+    // shop = myItems.GetItems();
+    // for (auto& shopItem : shop){
+    //     cout<<"The defense is: "<<shopItem.GetDefense()<<endl;
+    // }
+    // cout<<shop[0].GetDefense()<<endl;
+    // cout<<"Next Item"<<endl;
+    // vector<Item> shop2;
+    // myItems.getShopItems(2,3);
+    // shop2 = myItems.GetItems();
+    // for(auto& shopItem2 : shop2){
+    //     cout<<"The defense is: "<<shopItem2.GetDefense()<<endl;
+    // }
     // srand(time(NULL));
     // int randitem = rand() % 5;
     // cout<<randitem<<endl;
