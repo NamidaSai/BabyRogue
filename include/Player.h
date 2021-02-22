@@ -9,14 +9,11 @@ class Player
 {
     public:
         Player();
-
         void Spawn(Level level);
         void HandleInput(char input, Level& level);
-
         int GetX() { return x_; }
         int GetY() { return y_; }
         char GetSprite() { return sprite_; }
-
         void SetPosition(int x, int y)
         {
             x_ = x;
@@ -25,9 +22,9 @@ class Player
         void HandleBoughtItem(Item boughtItem);
         tuple<string, Item> SellItem(int playerChoice, int shopMoney);
         tuple<bool, string> ValidatePlayerSales(int playerChoice, int shopMoney);
-        vector<Item> GetPlayerItems() { return playerItems; }
         bool DoesPlayerHaveItems();
-        int GetMoney() { return money; }//money var should be set during spawn
+        vector<Item> GetPlayerItems() { return playerItems; }
+        int GetMoney() { return money; }
 
     private:
         int x_, y_;

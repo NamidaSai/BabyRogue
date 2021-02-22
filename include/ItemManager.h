@@ -1,14 +1,14 @@
 #ifndef ITEMMANAGER_H
 #define ITEMMANAGER_H
-#include <string>
 #include "Item.h"
+#include <string>
 #include <vector>
+
 using namespace std;
 
 class ItemManager {
     public:
     ItemManager();
-    Item * getShopItems(int minItems, int maxNoItems);
     vector<Item> GetItems() {return shop;}
     vector<Item> GetAllShopItems() {return allShopItems;}
     vector<Item> GetRemainingShopItems() {return remainingShopItems;}
@@ -16,11 +16,11 @@ class ItemManager {
     
     private:
     int GetMaxItems();
+    void GetAllShopItemsFromItem();
     vector<Item> shop;
     vector<int> idArray;
     vector<Item> allShopItems;
     vector<Item> remainingShopItems;
-    void GetAllShopItemsFromItem();
 };
 
 #endif

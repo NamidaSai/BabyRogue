@@ -1,10 +1,10 @@
+#include "ItemManager.h"
+#include "Item.h"
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
 #include <time.h>
 #include <regex>
-#include "ItemManager.h"
-#include "Item.h"
 #include <vector>
 
 using namespace std;
@@ -62,41 +62,6 @@ int ItemManager::GetMaxItems(){
         }
     }
     return maxID;
-}
-
-Item * ItemManager::getShopItems(int minItems, int maxNoItems) {
-    const int maxItems = GetMaxItems() - idArray.size();
-    
-    //need to subtract the idArray length here from maxItems
-    if (maxNoItems > maxItems){
-        maxNoItems = maxItems;
-    }
-    if (minItems > maxItems){
-        minItems = maxItems;
-    }
-    srand(time(NULL));
-    const int randTotalItems = rand() % (maxNoItems - minItems + 1) + minItems;
-    cout<<"Total Items are: "<<randTotalItems<<endl;
-    Item shopItems[randTotalItems];
-    bool isFull = false;
-    bool isPresent = false;
-    //int idArray[randTotalItems];
-    //vector<int> idArray;
-    int i = 0;
-    while(i < randTotalItems){
-        int randID = rand() % (maxNoItems - minItems + 1) + minItems;
-        cout<<"Random ID is: "<<randID<<endl;
-        if (find(begin(idArray), end(idArray), randID) != end(idArray)){
-            continue;
-        }
-        idArray.push_back(randID);
-        shopItems[i].SetValues(randID);
-        shop.push_back(shopItems[i]);
-        cout<<"Defense: "<<shopItems[i].GetDefense()<<endl;
-        i = i + 1;
-    }
-    
-    return shopItems;
 }
 
 void ItemManager::GetAllShopItemsFromItem(){

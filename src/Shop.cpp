@@ -14,8 +14,6 @@ Shop::Shop(vector<string> shopNames){
 }
 
 vector<int> Shop::SetShopItems(int minItems, int maxItems, vector<Item> allItems){
-    //Handle the event when allItems is empty
-    //Handle input checking if minItems are 0 or negative for example
     vector<int> selectedItems;
     if (minItems > maxItems){
         int temp = maxItems;
@@ -41,7 +39,6 @@ vector<int> Shop::SetShopItems(int minItems, int maxItems, vector<Item> allItems
     }
 
     return selectedItems;
-
 }
 
 void Shop::SetShopNameAndMoney(vector<string> shopNames){
@@ -115,12 +112,7 @@ void Shop::SetShopNameAndMoney(vector<string> shopNames){
         exit(0);
     }
 }
-/*This function will return a string to display on screen saying
-    which item was bought or if there are insuffecient funds and then remove that item from inventory of shop
-    after which the main function should reload the shopitems to display with the new money
-    it will also return the amount of money to deduct from players money and which item to add to player inventory
-    the main function will then pass those to the player function for updating the items and money
-*/
+
 tuple<bool, string> Shop::ValidatePlayerPurchase(int playerChoice, int playerMoney){
     playerChoice -= 1;
     if (playerChoice < 0 || playerChoice > shopItems.size()-1){
@@ -132,13 +124,12 @@ tuple<bool, string> Shop::ValidatePlayerPurchase(int playerChoice, int playerMon
     }
 
     return {true, "Approved"};
-
 }
+
 tuple<string, Item> Shop::PlayerBuysItem(int playerChoice, int playerMoney){
     playerChoice -= 1;
     money += shopItems[playerChoice].GetCost();
     Item tempItem = shopItems[playerChoice];
-    cout<<"Item: "<<tempItem.GetName()<<endl;
     shopItems.erase(shopItems.begin() + playerChoice);
     string message = "Player Purchased "+shopItems[playerChoice].GetName();
     return {message, tempItem};

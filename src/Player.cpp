@@ -92,7 +92,7 @@ tuple<bool, string> Player::ValidatePlayerSales(int playerChoice, int shopMoney)
 tuple<string, Item> Player::SellItem(int playerChoice, int shopMoney){
     playerChoice -= 1;
     Item tempItem = playerItems[playerChoice];
-    money -= playerItems[playerChoice].GetCost();
+    money += playerItems[playerChoice].GetCost();
     playerItems.erase(playerItems.begin() + playerChoice);
     string message = "Player Sold " + tempItem.GetName();
     return {message, tempItem};
