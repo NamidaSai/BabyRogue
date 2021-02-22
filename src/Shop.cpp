@@ -121,7 +121,7 @@ void Shop::SetShopNameAndMoney(vector<string> shopNames){
     it will also return the amount of money to deduct from players money and which item to add to player inventory
     the main function will then pass those to the player function for updating the items and money
 */
-tuple<string, Item*> Shop::BuyItems(int playerChoice, int playerMoney){
+tuple<string, Item*> Shop::PlayerBuysItem(int playerChoice, int playerMoney){
     //handle even when there are no items in shop
     playerChoice -= 1;
     if (playerChoice < 0){
@@ -136,4 +136,18 @@ tuple<string, Item*> Shop::BuyItems(int playerChoice, int playerMoney){
     shopItems.erase(shopItems.begin() + playerChoice);
     string message = "Player Purchased "+shopItems[playerChoice].GetName();
     return {message, &shopItems[playerChoice]};
+}
+
+void Shop::PlayerSellsItem(Item soldItem){
+    money -= soldItem.GetCost();
+    shopItems.push_back(soldItem);
+}
+
+bool Shop::DoesShopHaveItems(){
+    if (shopItems.empty()){
+        return false;
+    }
+    else {
+        return true;
+    }
 }

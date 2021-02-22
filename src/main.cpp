@@ -44,7 +44,7 @@ int main()
         myItems.UpdateRemainingItems(eraseItems);
         shops.push_back(tempShop);
     }
-    auto [message, boughtItem] = shops[0].BuyItems(1, 600);
+    auto [message, boughtItem] = shops[0].PlayerBuysItem(1, 600);
     vector<Item> testItems;
     testItems.push_back(*boughtItem);
     Player player;

@@ -23,7 +23,9 @@ class Player
             y_ = y;
         }
         void HandleBoughtItem(Item boughtItem);
+        tuple<string, Item*> SellItem(int playerChoice, int shopMoney);
         vector<Item> GetPlayerItems() { return playerItems; }
+        bool DoesPlayerHaveItems();
         int GetMoney() { return money; }//money var should be set during spawn
 
     private:

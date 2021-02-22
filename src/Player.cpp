@@ -79,6 +79,27 @@ void Player::HandleBoughtItem(Item boughtItems){
     playerItems.push_back(boughtItems);
 }
 
+tuple<string, Item*> Player::SellItem(int playerChoice, int shopMoney){
+    playerChoice -= 1;
+    if (playerItems[playerChoice].GetCost() > shopMoney){
+        return {"Insuffecient funds", NULL};
+    }
+    Item tempItem = playerItems[playerChoice];
+    money -= playerItems[playerChoice].GetCost();
+    playerItems.erase(playerItems.begin() + playerChoice);
+    string message = "Player Sold " + tempItem.GetName();
+    return {message, &tempItem};
+}
+
+bool Player::DoesPlayerHaveItems(){
+    if (playerItems.empty()){
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 /*************************** PRIVATE FUNCTIONS ***************************/
 
 
