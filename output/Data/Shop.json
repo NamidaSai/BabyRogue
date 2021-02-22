@@ -1,11 +1,11 @@
 {
     "Shop1":{
-        "Money": 100
+        "Money": 1000
     },
     "Shop2":{
-        "Money": 200
+        "Money": 2000
     },
     "Shop3":{
-        "Money": 300
+        "Money": 3000
     }
 }

@@ -40,17 +40,79 @@ int main()
             shopNames.push_back(shop.GetShopName());
         }
         Shop tempShop(shopNames);
-        vector<int> eraseItems = tempShop.SetShopItems(1,2,myItems.GetRemainingShopItems());
+        vector<int> eraseItems = tempShop.SetShopItems(3,3,myItems.GetRemainingShopItems());
         myItems.UpdateRemainingItems(eraseItems);
         shops.push_back(tempShop);
     }
-    auto [message, boughtItem] = shops[0].PlayerBuysItem(1, 600);
-    vector<Item> testItems;
-    testItems.push_back(*boughtItem);
+    for (auto& shop : shops){
+        cout<<"Shop name: "<<shop.GetShopName()<<endl;
+        cout<<"shop money: "<<shop.GetShopMoney()<<endl;
+        vector<Item> shopItems = shop.GetShopItems();
+        for (auto& shopItem : shopItems){
+            cout<<"Name: "<<shopItem.GetName()<<endl;
+            cout<<"Cost: "<<shopItem.GetCost()<<endl;
+            cout<<"Attack: "<<shopItem.GetAttack()<<endl;
+            cout<<"Defense: "<<shopItem.GetDefense()<<endl;
+        }
+        cout<<"Shop End"<<endl;
+    }
     Player player;
-    player.HandleBoughtItem(*boughtItem);
-    cout<<"message: "<<message<<" bought items: "<<player.GetPlayerItems()[0].GetDefense()<<endl;
-    cout<<"Shop Money: "<<shops[0].GetShopMoney();
+    auto [message, boughtItem] = shops[0].PlayerBuysItem(1, player.GetMoney());
+    player.HandleBoughtItem(boughtItem);
+
+    auto [message3, boughtItem2] = shops[0].PlayerBuysItem(1, player.GetMoney());
+    player.HandleBoughtItem(boughtItem2);
+    for (auto& shop : shops){
+        cout<<"Shop name: "<<shop.GetShopName()<<endl;
+        cout<<"shop money: "<<shop.GetShopMoney()<<endl;
+        vector<Item> shopItems = shop.GetShopItems();
+        for (auto& shopItem : shopItems){
+            cout<<"Name: "<<shopItem.GetName()<<endl;
+            cout<<"Cost: "<<shopItem.GetCost()<<endl;
+            cout<<"Attack: "<<shopItem.GetAttack()<<endl;
+            cout<<"Defense: "<<shopItem.GetDefense()<<endl;
+        }
+        cout<<"Shop End"<<endl;
+    }
+    for (auto& item : player.GetPlayerItems()){
+        cout<<"Name: "<<item.GetName()<<endl;
+        cout<<"Cost: "<<item.GetCost()<<endl;
+        cout<<"Attack: "<<item.GetAttack()<<endl;
+        cout<<"Defense: "<<item.GetDefense()<<endl;
+        cout<<"Money: "<<player.GetMoney()<<endl;
+    }
+    cout<<"----------- SALES PHASE START-----"<<endl;
+    auto [message2, soldItem] = player.SellItem(1, shops[0].GetShopMoney());
+    shops[0].PlayerSellsItem(soldItem);
+        for (auto& shop : shops){
+        cout<<"Shop name: "<<shop.GetShopName()<<endl;
+        cout<<"shop money: "<<shop.GetShopMoney()<<endl;
+        vector<Item> shopItems = shop.GetShopItems();
+        for (auto& shopItem : shopItems){
+            cout<<"Name: "<<shopItem.GetName()<<endl;
+            cout<<"Cost: "<<shopItem.GetCost()<<endl;
+            cout<<"Attack: "<<shopItem.GetAttack()<<endl;
+            cout<<"Defense: "<<shopItem.GetDefense()<<endl;
+        }
+        cout<<"Shop End"<<endl;
+    }
+    for (auto& item : player.GetPlayerItems()){
+        cout<<"Name: "<<item.GetName()<<endl;
+        cout<<"Cost: "<<item.GetCost()<<endl;
+        cout<<"Attack: "<<item.GetAttack()<<endl;
+        cout<<"Defense: "<<item.GetDefense()<<endl;
+        cout<<"Money: "<<player.GetMoney()<<endl;
+    }
+
+    auto [doIPurchase, message5] = shops[0].ValidatePlayerPurchase(1, 1000);
+    if (doIPurchase){
+        cout<<"Valid: "<<message5;
+    }
+    else {
+        cout<<"Invalid: "<<message5;
+    }
+    // cout<<"message: "<<message<<" bought items: "<<player.GetPlayerItems()[0].GetDefense()<<endl;
+    // cout<<"Shop Money: "<<shops[0].GetShopMoney();
     // if (leveltile == "$"){
     //     for (auto& shop : shops){
     //         shopNames.push_back(shop.GetShopName());
