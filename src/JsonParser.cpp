@@ -5,14 +5,12 @@
 
 tuple<string,int, int> JsonParser::GetWord(string path){
     string text;
-    bool found = false;
     ifstream file(path);
     string openBracket = "{";
     string closedBracket = "}";
 
     while(getline(file,text)){
         int n = text.length();
-        int totalQuotes = 0;
         char carray[n+1];
         int pos1 = 0;
         int wordLength = 0;

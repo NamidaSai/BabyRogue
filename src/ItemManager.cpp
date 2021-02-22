@@ -16,14 +16,12 @@ ItemManager::ItemManager(){
 int ItemManager::GetMaxItems(){
     int maxID = 0;
     string text;
-    bool found = false;
     ifstream file("Data/item.json");
     string openBracket = "{";
     string closedBracket = "}";
 
     while(getline(file,text)){
         int n = text.length();
-        int totalQuotes = 0;
         char carray[n+1];
         int pos1 = 0;
         int wordLength = 0;

@@ -44,14 +44,12 @@ vector<int> Shop::SetShopItems(int minItems, int maxItems, vector<Item> allItems
 void Shop::SetShopNameAndMoney(vector<string> shopNames){
     string text;
     bool found = false;
-    bool flag = false;
     ifstream file("Data/Shop.json");
     string openBracket = "{";
     string closedBracket = "}";
 
     while(getline(file,text)){
         int n = text.length();
-        int totalQuotes = 0;
         char carray[n+1];
         int pos1 = 0;
         int wordLength = 0;
@@ -126,7 +124,7 @@ tuple<bool, string> Shop::ValidatePlayerPurchase(int playerChoice, int playerMon
     return {true, "Approved"};
 }
 
-tuple<string, Item> Shop::PlayerBuysItem(int playerChoice, int playerMoney){
+tuple<string, Item> Shop::PlayerBuysItem(int playerChoice){
     playerChoice -= 1;
     money += shopItems[playerChoice].GetCost();
     Item tempItem = shopItems[playerChoice];

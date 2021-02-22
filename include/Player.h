@@ -20,7 +20,7 @@ class Player
             y_ = y;
         }
         void HandleBoughtItem(Item boughtItem);
-        tuple<string, Item> SellItem(int playerChoice, int shopMoney);
+        tuple<string, Item> SellItem(int playerChoice);
         tuple<bool, string> ValidatePlayerSales(int playerChoice, int shopMoney);
         bool DoesPlayerHaveItems();
         vector<Item> GetPlayerItems() { return playerItems; }

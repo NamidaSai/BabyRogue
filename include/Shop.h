@@ -14,7 +14,7 @@ class Shop {
     string GetShopName() {return shopName;}
     int GetShopMoney() {return money;}
     tuple<bool, string> ValidatePlayerPurchase(int playerChoice, int playerMoney);
-    tuple<string, Item> PlayerBuysItem(int playerChoice, int playerMoney); 
+    tuple<string, Item> PlayerBuysItem(int playerChoice); 
     void PlayerSellsItem(Item soldItem);
     bool DoesShopHaveItems();
     

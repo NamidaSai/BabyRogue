@@ -57,10 +57,10 @@ int main()
         cout<<"Shop End"<<endl;
     }
     Player player;
-    auto [message, boughtItem] = shops[0].PlayerBuysItem(1, player.GetMoney());
+    auto [message, boughtItem] = shops[0].PlayerBuysItem(1);
     player.HandleBoughtItem(boughtItem);
 
-    auto [message3, boughtItem2] = shops[0].PlayerBuysItem(1, player.GetMoney());
+    auto [message3, boughtItem2] = shops[0].PlayerBuysItem(1);
     player.HandleBoughtItem(boughtItem2);
     for (auto& shop : shops){
         cout<<"Shop name: "<<shop.GetShopName()<<endl;
@@ -82,7 +82,7 @@ int main()
         cout<<"Money: "<<player.GetMoney()<<endl;
     }
     cout<<"----------- SALES PHASE START-----"<<endl;
-    auto [message2, soldItem] = player.SellItem(1, shops[0].GetShopMoney());
+    auto [message2, soldItem] = player.SellItem(1);
     shops[0].PlayerSellsItem(soldItem);
         for (auto& shop : shops){
         cout<<"Shop name: "<<shop.GetShopName()<<endl;
