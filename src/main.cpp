@@ -5,9 +5,11 @@
 #include "MainGame.h"
 #include "ItemManager.h"
 #include "Shop.h"
+#include "Player.h"
 #include <algorithm>
 #include "Item.h"
 #include <vector>
+#include <tuple>
 
 using namespace std;
 
@@ -42,12 +44,29 @@ int main()
         myItems.UpdateRemainingItems(eraseItems);
         shops.push_back(tempShop);
     }
-    for (auto& shop : shops){
-        cout<<"Shop name: "<<shop.GetShopName()<<endl;
-        cout<<"shop money: "<<shop.GetShopMoney()<<endl;
-        vector<Item> shopItems = shop.GetShopItems();
-        cout<<"shop defense: "<<shopItems[0].GetDefense();
-    }
+    auto [message, boughtItem] = shops[0].BuyItems(1, 600);
+    vector<Item> testItems;
+    testItems.push_back(*boughtItem);
+    Player player;
+    player.HandleBoughtItem(*boughtItem);
+    cout<<"message: "<<message<<" bought items: "<<player.GetPlayerItems()[0].GetDefense()<<endl;
+    cout<<"Shop Money: "<<shops[0].GetShopMoney();
+    // if (leveltile == "$"){
+    //     for (auto& shop : shops){
+    //         shopNames.push_back(shop.GetShopName());
+    //     }
+    //     Shop tempShop(shopNames);
+    //     vector<int> eraseItems = tempShop.SetShopItems(1,2,myItems.GetRemainingShopItems());
+    //     myItems.UpdateRemainingItems(eraseItems);
+    //     shops.push_back(tempShop);
+    // }
+    // for (auto& shop : shops){
+    //     cout<<"Shop name: "<<shop.GetShopName()<<endl;
+    //     cout<<"shop money: "<<shop.GetShopMoney()<<endl;
+    //     vector<Item> shopItems = shop.GetShopItems();
+    //     cout<<"shop defense: "<<shopItems[0].GetDefense()<<endl;
+    //     cout<<"Shop End"<<endl;
+    // }
     // ItemManager myItems;
     // vector<Item> shop = myItems.GetAllShopItems();
     // for (auto& shopItem : shop){

@@ -115,3 +115,25 @@ void Shop::SetShopNameAndMoney(vector<string> shopNames){
         exit(0);
     }
 }
+/*This function will return a string to display on screen saying
+    which item was bought or if there are insuffecient funds and then remove that item from inventory of shop
+    after which the main function should reload the shopitems to display with the new money
+    it will also return the amount of money to deduct from players money and which item to add to player inventory
+    the main function will then pass those to the player function for updating the items and money
+*/
+tuple<string, Item*> Shop::BuyItems(int playerChoice, int playerMoney){
+    //handle even when there are no items in shop
+    playerChoice -= 1;
+    if (playerChoice < 0){
+        return {"Invalid Choice", NULL};
+    }
+
+    if (shopItems[playerChoice].GetCost() > playerMoney){
+        return {"Insuffecient Funds", NULL};
+    }
+
+    money += shopItems[playerChoice].GetCost();
+    shopItems.erase(shopItems.begin() + playerChoice);
+    string message = "Player Purchased "+shopItems[playerChoice].GetName();
+    return {message, &shopItems[playerChoice]};
+}

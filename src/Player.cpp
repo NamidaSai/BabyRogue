@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Item.h"
 #include <iostream>
 
 Player::Player()
@@ -73,6 +73,11 @@ void Player::HandleInput(char input, Level& level)
     }
 }
 
+
+void Player::HandleBoughtItem(Item boughtItems){
+    money -= boughtItems.GetCost();
+    playerItems.push_back(boughtItems);
+}
 
 /*************************** PRIVATE FUNCTIONS ***************************/
 

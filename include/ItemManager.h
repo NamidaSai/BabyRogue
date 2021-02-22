@@ -13,6 +13,7 @@ class ItemManager {
     vector<Item> GetAllShopItems() {return allShopItems;}
     vector<Item> GetRemainingShopItems() {return remainingShopItems;}
     void UpdateRemainingItems(vector<int> eraseItems);
+    
     private:
     int GetMaxItems();
     vector<Item> shop;

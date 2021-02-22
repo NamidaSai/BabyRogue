@@ -1,7 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
+#include "Item.h"
 #include "Level.h"
+#include <vector>
+#include <tuple>
 
 class Player
 {
@@ -20,11 +22,15 @@ class Player
             x_ = x;
             y_ = y;
         }
+        void HandleBoughtItem(Item boughtItem);
+        vector<Item> GetPlayerItems() { return playerItems; }
+        int GetMoney() { return money; }//money var should be set during spawn
 
     private:
         int x_, y_;
         char sprite_;
-
+        int money;
+        vector<Item> playerItems;
         bool CanMoveTo(int x, int y, Level& level);
 };
 
