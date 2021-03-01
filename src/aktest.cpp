@@ -1,3 +1,16 @@
+#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+#include <time.h>
+#include "MainGame.h"
+#include "ItemManager.h"
+#include "Shop.h"
+#include "Player.h"
+#include <algorithm>
+#include "Item.h"
+#include <vector>
+#include <tuple>
+
 int aktest(){
     // ItemManager myItems;
     // Player player;
