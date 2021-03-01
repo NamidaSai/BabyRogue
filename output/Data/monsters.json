@@ -1,9 +1,9 @@
 {
     "Troll":{
         "Sprite": "T",
-        "Health": 100,
-        "Attack": 100,
-        "Defense": 100
+        "Health": 10,
+        "Attack": 3,
+        "Defense": 2
     },
     "Goblin":{
         "Health": 200,

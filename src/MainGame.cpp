@@ -92,11 +92,11 @@ void MainGame::SwitchLevel()
 
 void MainGame::LoadLevels()
 {
-    Level maze("Levels/Maze.txt");
+    Level maze("Maze");
     levels_[0] = maze;
     numberOfLevels_++;
 
-    Level barracks("Levels/Barracks.txt");
+    Level barracks("Barracks");
     levels_[1] = barracks;
     numberOfLevels_++;
 }

@@ -1,7 +1,10 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
+#include "Monster.h"
+#include "Chest.h"
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -24,14 +27,23 @@ class Level
 
         int GetWidth() { return width_; }
         int GetHeight() { return height_; }
+        Monster& GetMonster(int x, int y);
+        Chest GetChest(int x, int y);
 
     private:
         void LoadLevel();
+        void LoadObjects();
+        void SpawnChest(int x, int y);
+        void SpawnShop(int x, int y);
+        void SpawnMonster(int x, int y, char sprite);
 
         string levelName_;
         static const int width_ = 75;
         static const int height_ = 17;
         char layout_[height_][width_];
+
+        vector<Monster> monsters_;
+        vector<Chest> chests_;
 
         bool loadNext_ = false;
         bool loadPrev_ = false;

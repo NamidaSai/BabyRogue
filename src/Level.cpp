@@ -7,17 +7,17 @@ Level::Level()
 {
     levelName_ = "Levels/sandbox.txt";
     LoadLevel();
+    LoadObjects();
 }
 
 Level::Level(string levelName)
 {
-    levelName_ = levelName;
+    levelName_ = "Levels/" + levelName + ".txt";
     LoadLevel();
+    LoadObjects();
 }
 
-
 /******************** PUBLIC FUNCTIONS ********************/
-
 
 void Level::PrintLevel()
 {
@@ -68,12 +68,45 @@ void Level::ResetTile(int x, int y)
     {
         layout_[y][x] = '.';
     }
-    
 }
 
+Monster &Level::GetMonster(int x, int y)
+{
+    for (unsigned int i = 0; i < monsters_.size(); ++i)
+    {
+        if (monsters_[i].GetX() == x && monsters_[i].GetY() == y)
+        {
+            return monsters_[i];
+        }
+        else
+        {
+            continue;
+        }
+    }
+}
+
+Chest Level::GetChest(int x, int y)
+{
+    for (unsigned int i = 0; i < chests_.size(); ++i)
+    {
+        if (chests_[i].GetX() == x && chests_[i].GetY() == y)
+        {
+            Chest returnedChest = chests_[i];
+            chests_[i] = chests_.back();
+            chests_.pop_back();
+            return returnedChest;
+        }
+        else
+        {
+            continue;
+        }
+    }
+
+    cout << "No chest found at position " << x << "," << y << endl;
+    return 0;
+}
 
 /******************** PRIVATE FUNCTIONS ********************/
-
 
 void Level::LoadLevel()
 {
@@ -93,7 +126,7 @@ void Level::LoadLevel()
         {
             for (unsigned int x = 0; x < width_; ++x)
             {
-                if (x >= row.length())
+                if (x >= row.length()) // if level.txt does not follow dimensions, fill with walls (columns)
                 {
                     layout_[y][x] = '#';
                 }
@@ -105,10 +138,61 @@ void Level::LoadLevel()
         }
         else
         {
-            for (unsigned int x = 0; x < width_; ++x)
+            for (unsigned int x = 0; x < width_; ++x) // if level.txt does not follow dimensions, fill with walls (rows)
             {
                 layout_[y][x] = '#';
             }
         }
     }
+}
+
+void Level::LoadObjects()
+{
+    for (int y = 0; y < height_; ++y)
+    {
+        for (int x = 0; x < width_; ++x)
+        {
+            switch (layout_[y][x])
+            {
+            case '#':
+                break;
+            case '.':
+                break;
+            case 'Y':
+                break;
+            case 'Z':
+                break;
+            case '@':
+                break;
+            case 'X':
+                SpawnChest(x, y);
+                break;
+            case '$':
+                SpawnShop(x, y);
+                break;
+            default:
+                SpawnMonster(x, y, layout_[y][x]);
+                break;
+            }
+        }
+    }
+}
+
+void Level::SpawnChest(int x, int y)
+{
+    Chest chest;
+    chest.SetPosition(x, y);
+    chests_.push_back(chest);
+}
+
+void Level::SpawnShop(int x, int y)
+{
+    // AK to fill
+}
+
+void Level::SpawnMonster(int x, int y, char sprite)
+{
+    Monster monster(sprite);
+    monster.SetPosition(x, y);
+    monsters_.push_back(monster);
 }

@@ -14,9 +14,7 @@ void Display::ClearCanvas()
     cout << string(height_, '\n');
 }
 
-
 /******************** PUBLIC FUNCTIONS ********************/
-
 
 void Display::GameCanvas(Level level)
 {
@@ -24,7 +22,7 @@ void Display::GameCanvas(Level level)
     cout << string(width_, edgeChar) << endl;
     for (int i = 0; i < heightMargin_; ++i)
     {
-        printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
+        printf("%c%*c\n", edgeChar, (width_ - 1), edgeChar);
     }
 
     // Level and HUD
@@ -39,7 +37,11 @@ void Display::GameCanvas(Level level)
             cout << level.GetTile(x, y);
         }
 
-        int remainingWidth = (width_ - level.GetWidth() - 2);
+        // Level Name
+        // Player Stats
+        // Player Inventory
+
+        int remainingWidth = (width_ - level.GetWidth() - widthMargin_);
         printf("%*c\n", remainingWidth, edgeChar);
     }
 
@@ -48,17 +50,15 @@ void Display::GameCanvas(Level level)
     int remainingHeight = height_ - level.GetHeight() - (heightMargin_ * 2) - 2;
     for (int y = 0; y < remainingHeight; ++y)
     {
-        printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
+        printf("%c%*c\n", edgeChar, (width_ - 1), edgeChar);
     }
 
     // lower screen margin and border
     for (int i = 0; i < heightMargin_; ++i)
     {
-        printf("%c%*c\n", edgeChar, (width_-1), edgeChar);
+        printf("%c%*c\n", edgeChar, (width_ - 1), edgeChar);
     }
     cout << string(width_, edgeChar) << endl;
 }
 
-
 /******************** PRIVATE FUNCTIONS ********************/
-
