@@ -55,8 +55,8 @@ void Monster::SetValues(char choice){
         if (word == "Sprite"){
             for (int i = wordend + 2; i < n; ++i){
                 if (carray[i] == '"'){
-                    sprite = carray[i+1]; //since our sprite is always one letter char its possible to do without finding length of sprite
-                    if (sprite == choice){
+                    sprite_ = carray[i+1]; //since our sprite is always one letter char its possible to do without finding length of sprite
+                    if (sprite_ == choice){
                         found = true;
                         break;
                     }
@@ -64,13 +64,13 @@ void Monster::SetValues(char choice){
             }
         }
         else if (word == "Health"){
-            health = stoi(finalval);
+            health_ = stoi(finalval);
         }
         else if (word == "Defense"){
-            defense = stoi(finalval);
+            defense_ = stoi(finalval);
         }
         else if (word == "Attack"){
-            attack = stoi(finalval);
+            attack_ = stoi(finalval);
         }
         else if (wordLength > 0){
             type = word;
@@ -88,4 +88,23 @@ void Monster::SetValues(char choice){
         exit(0); 
     }
     
+}
+
+void Monster::TakeDamage(int amount)
+{
+    if (amount >= defense_)
+    {
+        int damage = amount - defense_;
+        health_ -= damage;
+        // send message "The monster took [damage] damage!"
+    }
+    else
+    {
+        // send message "The monster's armor absorbed the blow!"
+    }
+
+    if (health_ <= 0)
+    {
+        // Monster destroyer;
+    }
 }

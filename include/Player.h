@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "Item.h"
 #include "Level.h"
+#include "Monster.h"
 #include <vector>
 #include <tuple>
 
@@ -11,6 +12,9 @@ class Player
         Player();
         void Spawn(Level level);
         void HandleInput(char input, Level& level);
+        void AddMoney(int amount);
+        void RemoveMoney(int amount);
+
         int GetX() { return x_; }
         int GetY() { return y_; }
         char GetSprite() { return sprite_; }
@@ -29,9 +33,15 @@ class Player
     private:
         int x_, y_;
         char sprite_;
-        int money = 1000;
         vector<Item> playerItems;
+        int health_ = 20;
+        int attack_ = 5;
+        int defense_ = 2;
+        int money_ = 1000;
+
         bool CanMoveTo(int x, int y, Level& level);
+        void Attack(Monster& monster);
+        void TakeDamage(int amount);
 };
 
 #endif /* PLAYER_H */
