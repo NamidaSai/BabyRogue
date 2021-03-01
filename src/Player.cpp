@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Item.h"
 #include <iostream>
 #include <random>
 #include <ctime>
@@ -73,9 +73,48 @@ void Player::HandleInput(char input, Level &level)
     }
 }
 
+
+void Player::HandleBoughtItem(Item boughtItems){
+    RemoveMoney(boughtItems.GetCost());
+    playerItems.push_back(boughtItems);
+}
+
+tuple<bool, string> Player::ValidatePlayerSales(int playerChoice, int shopMoney){
+    playerChoice -= 1;
+    if (playerChoice < 0 || playerChoice > playerItems.size()-1){
+        return {false, "Invalid Choice"};
+    } 
+     if (playerItems[playerChoice].GetCost() > shopMoney){
+        return {false, "Insuffecient funds"};
+    }
+    return {true, "Approved"};
+}
+
+tuple<string, Item> Player::SellItem(int playerChoice){
+    playerChoice -= 1;
+    Item tempItem = playerItems[playerChoice];
+    AddMoney(playerItems[playerChoice].GetCost());
+    playerItems.erase(playerItems.begin() + playerChoice);
+    string message = "Player Sold " + tempItem.GetName();
+    return {message, tempItem};
+}
+
+bool Player::DoesPlayerHaveItems(){
+    if (playerItems.empty()){
+        return false;
+    }
+    else {
+        return true;
+    }
+
 void Player::AddMoney(int amount)
 {
     money_ += amount;
+}
+
+void Player::RemoveMoney(int amount)
+{
+    money_ -= amount;
 }
 
 /*************************** PRIVATE FUNCTIONS ***************************/

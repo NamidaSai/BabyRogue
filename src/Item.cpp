@@ -6,10 +6,10 @@
 
 using namespace std;
 
-Item::Item(int choice){
-    SetValues(choice);
+// Item::Item(int choice){
+//     SetValues(choice);
     
-}
+// }
 
 void Item::SetValues(int choice){
     string text;
@@ -20,7 +20,6 @@ void Item::SetValues(int choice){
 
     while(getline(file,text)){
         int n = text.length();
-        int totalQuotes = 0;
         char carray[n+1];
         int pos1 = 0;
         int wordLength = 0;

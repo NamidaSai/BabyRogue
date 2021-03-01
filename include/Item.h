@@ -5,7 +5,8 @@ using namespace std;
 
 class Item {
     public:
-        Item(int choice);
+        //Item(int choice);
+        //Item();
         void SetValues(int choice);
         string GetName() { return name; }
         int GetAttack() { return attack; }

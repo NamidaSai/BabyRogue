@@ -1,7 +1,4 @@
-#include <iostream>
-
 #include "MainGame.h"
-#include "Item.h"
 
 int main()
 {
@@ -11,3 +8,4 @@ int main()
     system("PAUSE");
     return 0;
 }
+
