@@ -73,24 +73,28 @@ void Player::HandleInput(char input, Level &level)
     }
 }
 
-
-void Player::HandleBoughtItem(Item boughtItems){
+void Player::HandleBoughtItem(Item boughtItems)
+{
     RemoveMoney(boughtItems.GetCost());
     playerItems.push_back(boughtItems);
 }
 
-tuple<bool, string> Player::ValidatePlayerSales(int playerChoice, int shopMoney){
+tuple<bool, string> Player::ValidatePlayerSales(int playerChoice, int shopMoney)
+{
     playerChoice -= 1;
-    if (playerChoice < 0 || playerChoice > playerItems.size()-1){
+    if (playerChoice < 0 || playerChoice > playerItems.size() - 1)
+    {
         return {false, "Invalid Choice"};
-    } 
-     if (playerItems[playerChoice].GetCost() > shopMoney){
+    }
+    if (playerItems[playerChoice].GetCost() > shopMoney)
+    {
         return {false, "Insuffecient funds"};
     }
     return {true, "Approved"};
 }
 
-tuple<string, Item> Player::SellItem(int playerChoice){
+tuple<string, Item> Player::SellItem(int playerChoice)
+{
     playerChoice -= 1;
     Item tempItem = playerItems[playerChoice];
     AddMoney(playerItems[playerChoice].GetCost());
@@ -99,13 +103,17 @@ tuple<string, Item> Player::SellItem(int playerChoice){
     return {message, tempItem};
 }
 
-bool Player::DoesPlayerHaveItems(){
-    if (playerItems.empty()){
+bool Player::DoesPlayerHaveItems()
+{
+    if (playerItems.empty())
+    {
         return false;
     }
-    else {
+    else
+    {
         return true;
     }
+}
 
 void Player::AddMoney(int amount)
 {
